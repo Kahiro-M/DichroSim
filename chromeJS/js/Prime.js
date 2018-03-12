@@ -4,8 +4,8 @@ function isPrime(iInput) {
 			return 0;
 		}
 	else{
-		for(let i=2;i<iInput;i++){
-			let ret = iInput%i;
+		for(var i=2;i<iInput;i++){
+			var ret = iInput%i;
 			if(ret==0){
 				return 0;
 			}
@@ -16,8 +16,8 @@ function isPrime(iInput) {
 
 //Start～Endまでの間の素数を格納した配列を返す
 function getPrimeArray(iInStart,iInEnd){
-	let ret = [];
-	let tmp = 0;
+	var ret = [];
+	var tmp = 0;
 	
 	//先頭と終端の関係チェック
 	if(iInStart < iInEnd){
@@ -29,7 +29,7 @@ function getPrimeArray(iInStart,iInEnd){
 	}
 	
 	//先頭から終端までの素数を配列に格納
-	for(let i=iInStart; i<=iInEnd; i++){
+	for(var i=iInStart; i<=iInEnd; i++){
 		tmp = isPrime(i);
 		if(tmp){
 			ret.push(i);

@@ -1,7 +1,7 @@
 //formInputの大小関係を調べる
 function isStartLowerThunEnd() {
-	let iInStart = Number(document.formInput.Start.value);
-	let iInEnd = Number(document.formInput.End.value);
+	var iInStart = Number(document.formInput.Start.value);
+	var iInEnd = Number(document.formInput.End.value);
 
 	if(iInStart<iInEnd){
 		return 1;
@@ -9,11 +9,12 @@ function isStartLowerThunEnd() {
 	else{
 		return 0;
 	}
+	return 0;
 }
 
 function becomeHigher() {
-	let iInStart = Number(document.formInput.Start.value);
-	let iInEnd = Number(document.formInput.End.value);
+	var iInStart = Number(document.formInput.Start.value);
+	var iInEnd = Number(document.formInput.End.value);
 	
 	if(iInStart<iInEnd){
 			//OKなので何もしない
@@ -25,8 +26,8 @@ function becomeHigher() {
 }
 
 function becomeLower() {
-	let iInStart = Number(document.formInput.Start.value);
-	let iInEnd = Number(document.formInput.End.value);
+	var iInStart = Number(document.formInput.Start.value);
+	var iInEnd = Number(document.formInput.End.value);
 	
 	if(iInStart<iInEnd){
 			//OKなので何もしない
