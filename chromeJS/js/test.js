@@ -1,5 +1,6 @@
-function main(){
-	var iTest = isPrime(5);
+function main() {
+	"use strict";
+	var iTest = isPrime(4);
 	alert('結果は'+iTest)
 }
 
