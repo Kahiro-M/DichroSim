@@ -20,7 +20,7 @@ function getPrimeArray(iInStart,iInEnd){
 	let tmp = 0;
 	
 	//先頭と終端の関係チェック
-	if(iInStart<iInEnd){
+	if(iInStart < iInEnd){
 		//問題なし
 	}
 	else{
