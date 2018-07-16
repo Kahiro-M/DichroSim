@@ -7,6 +7,8 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/Prime.js"></script>
 <script type="text/javascript" src="js/Form.js"></script>
+<script type="text/javascript" src="js/lib/matrixgl.min.js"></script><script type="text/javascript" src="js/ColorCulc.js"></script>
+
 
 </head>
 
@@ -16,10 +18,29 @@
 
 	<form name="formInput">
 		<p>
-			start:<input name="Start" value="1" type="number" onchange="becomeLower()">
+			Color 1
 		</p>
 		<p>
-			end:<input name="End" value="2" type="number" onchange="becomeHigher()">
+			x:<input name="Color1_x" value=0.3 type="number">
+		</p>
+		<p>
+			y:<input name="Color1_y" value=0.3 type="number">
+		</p>
+		<p>
+			Y(cd/m^2):<input name="Color1_Y" value=80 type="number">
+		</p>
+		
+		<p>
+			Color 2
+		</p>
+		<p>
+			x:<input name="Color2_x" value=0.5 type="number">
+		</p>
+		<p>
+			y:<input name="Color2_y" value=".2"type="number">
+		</p>
+		<p>
+			Y(cd/m^2):<input name="Color2_Y" value=90 type="number">
 		</p>
 	</form>
 

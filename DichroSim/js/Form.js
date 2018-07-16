@@ -1,9 +1,7 @@
 //formInputの大小関係を調べる
-function isStartLowerThunEnd() {
-	var iInStart = Number(document.formInput.Start.value);
-	var iInEnd = Number(document.formInput.End.value);
+function isOver1(input) {
 
-	if(iInStart<iInEnd){
+	if(input>1){
 		return 1;
 	}
 	else{
