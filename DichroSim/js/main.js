@@ -14,6 +14,9 @@ function main() {
 	
 	console.log(SumColor);
 	console.log(SubColor);
+	
+	console.log(math.round(math.e, 3));            // 2.718
+
 //	alert(SumColor);
 
 }
