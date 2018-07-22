@@ -15,19 +15,17 @@ function main() {
 	var mColor1 = makeXYZMatrix(Color1);
 	var mColor2 = makeXYZMatrix(Color2);
 	
-	var lmsColor1 = transLMS(Color1);
+	var lmsColor1 = transXYZtoLMS(Color1);
+	var xyzColor1 = transLMStoXYZ(lmsColor1);
 	
 	var SumColor = addColor(Color1,Color2);
 	var SubColor = subColor(Color1,Color2);
 	
-	console.log(Color1);
-	console.log(Color2);
-	console.log(SumColor);
-	console.log(SubColor);
-	console.log(mColor1);
-	console.log(mColor2);
+	console.log("Color1",Color1);
+	console.log("mColor1",mColor1);
+	console.log("lmsColor1",lmsColor1);
+	console.log("xyzColor1",xyzColor1);
 	
-	console.log(math.round(math.e, 3));            // 2.718
 
 //	alert(SumColor);
 

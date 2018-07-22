@@ -10,13 +10,26 @@ function ColorData(){
 
 
 function culcXYZ(x,y,Y){
-	this.x = Number(x);
-	this.y = Number(y);
-	this.z = 1-(this.x+this.y);
-	this.Y = Number(Y);
-	this.X = (this.x/this.y)*this.Y;
-	this.Z = (this.z/this.y)*this.Y;
-	return	this;
+	var obj = new ColorData();
+	obj.x = Number(x);
+	obj.y = Number(y);
+	obj.z = 1-(obj.x+obj.y);
+	obj.Y = Number(Y);
+	obj.X = (obj.x/obj.y)*obj.Y;
+	obj.Z = (obj.z/obj.y)*obj.Y;
+	return	obj;
+}
+
+function culcSmallXYZ(inXYZ){
+	var obj = new ColorData();
+	obj.X = inXYZ.get([0]);
+	obj.Y = inXYZ.get([1]);
+	obj.Z = inXYZ.get([2]);
+	var sumXYZ = obj.X+obj.Y+obj.Z;
+	obj.x = obj.X/sumXYZ;
+	obj.y = obj.Y/sumXYZ;
+	obj.z = obj.Z/sumXYZ;
+	return	obj;
 }
 
 function makeXYZMatrix(inColorData){
@@ -49,14 +62,15 @@ function subColor(inColor1, inColor2){
 	return tmpColor;
 }
 
-function transLMS(inColor){
-	//LMS錐体の反応値への変換行列
-	//Vos(1978)の錐体分好感度を採用
-	var Vos = VosMatrix();
-//		math.matrix([	[0.15516, 0.54307, -0.03701],
-//							[-0.15516, 0.45692, 0.02969],
-//							[0, 0, 0.00732]]);
+function transLMStoXYZ(inLMS){
+	var invVos = math.inv(VosMatrix());
+	var mColor = math.multiply(invVos,inLMS);
+	var retColor = culcSmallXYZ(mColor);
+	return retColor;
+}
 
+function transXYZtoLMS(inColor){
+	var Vos = VosMatrix();
 	var mColor = makeXYZMatrix(inColor);
 	var LMS = math.multiply(Vos,mColor);
 	return LMS;
