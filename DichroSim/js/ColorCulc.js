@@ -1,40 +1,51 @@
 function ColorData(){
 	this.x = 0;
 	this.y = 0;
-	this.z = 0;
 	this.Y = 0;
-	this.X = 0;
-	this.Z = 0;
 	return	this;
 }
 
-
-function culcXYZ(x,y,Y){
+function setColorData(x,y,Y){
 	var obj = new ColorData();
 	obj.x = Number(x);
 	obj.y = Number(y);
-	obj.z = 1-(obj.x+obj.y);
 	obj.Y = Number(Y);
-	obj.X = (obj.x/obj.y)*obj.Y;
-	obj.Z = (obj.z/obj.y)*obj.Y;
 	return	obj;
+}
+
+
+function culcXYZ(inColorData){
+	var obj = new ColorData();
+	obj.x = Number(inColorData.x);
+	obj.y = Number(inColorData.y);
+	obj.Y = Number(inColorData.Y);
+
+	var tmpz = 1-(obj.x+obj.y);
+	var tmpX = (obj.x/obj.y)*obj.Y;
+	var tmpZ = (tmpz/obj.y)*obj.Y;
+	
+	return	math.matrix([tmpX,obj.Y,tmpZ]);
 }
 
 function culcSmallXYZ(inXYZ){
 	var obj = new ColorData();
-	obj.X = inXYZ.get([0]);
-	obj.Y = inXYZ.get([1]);
-	obj.Z = inXYZ.get([2]);
-	var sumXYZ = obj.X+obj.Y+obj.Z;
-	obj.x = obj.X/sumXYZ;
-	obj.y = obj.Y/sumXYZ;
-	obj.z = obj.Z/sumXYZ;
+	
+	var tmpX = inXYZ.get([0]);
+	var tmpY = inXYZ.get([1]);
+	var tmpZ = inXYZ.get([2]);
+	
+	var sumXYZ = tmpX+tmpY+tmpZ;
+
+	obj.Y = tmpY;
+	obj.x = tmpX/sumXYZ;
+	obj.y = tmpY/sumXYZ;
 	return	obj;
 }
 
 function makeXYZMatrix(inColorData){
-	var tmp = math.matrix([inColorData.X,inColorData.Y,inColorData.Z]);
-	return	tmp;
+	var mXYZ = culcXYZ(inColorData);
+	//var tmp = math.matrix([inColorData.X,inColorData.Y,inColorData.Z]);
+	return	mXYZ;
 }
 
 function addColor(inColor1, inColor2){
@@ -69,12 +80,19 @@ function transLMStoXYZ(inLMS){
 	return retColor;
 }
 
-function transXYZtoLMS(inColor){
+function transXYZtoLMS(inXYZ){
 	var Vos = VosMatrix();
-	var mColor = makeXYZMatrix(inColor);
-	var LMS = math.multiply(Vos,mColor);
+	//var mColor = makeXYZMatrix(inColor);
+	var LMS = math.multiply(Vos,inXYZ);
 	return LMS;
 }
+
+function transLMStoProtan(inLMS){
+	var eXYZ = eMatrix();
+	var eLMS = transXYZtoLMS(eXYZ);
+	return eLMS;
+}
+
 
 function VosMatrix(){
 	//LMS錐体の反応値への変換行列
@@ -84,3 +102,10 @@ function VosMatrix(){
 							[0, 0, 0.00732]]);
 
 }
+
+function eMatrix(){
+	//XYZ表色系における等エネルギー白色
+	return math.matrix(	[0.333, 0.333, 0.333] );
+
+}
+
