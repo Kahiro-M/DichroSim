@@ -18,6 +18,8 @@ function main() {
 	var lmsColor1 = transXYZtoLMS(mColor1);
 	var xyzColor1 = transLMStoXYZ(lmsColor1);
 	
+	var LabColor1 = transXYZtoLab(mColor1);
+	
 	var protanColor1 = transLMStoProtan(lmsColor1);
 	
 	var SumColor = addColor(Color1,Color2);
@@ -27,7 +29,9 @@ function main() {
 	console.log("mColor1",mColor1);
 	console.log("lmsColor1",lmsColor1);
 	console.log("xyzColor1",xyzColor1);
+	console.log("normaliseY",LabColor1);
 	
+//	document.write("normaliseY"+LabColor1+"<br>");
 
 //	alert(SumColor);
 

@@ -93,6 +93,20 @@ function transLMStoProtan(inLMS){
 	return eLMS;
 }
 
+function transXYZtoLab(inXYZ){
+	var WhitePoint = WhitePointMatrix();
+	//心理計測明度(psychometric lightness)
+	var PL = 0;
+	var threshold = 0.008856;
+	var normaliseY = inXYZ.get([1])/WhitePoint.get([1]);
+	if(normaliseY>threshold){
+		PL = math.cbrt(normaliseY)*116-16;
+		}
+	else{
+		PL = normaliseY*903.29;
+	}
+	return PL;
+}
 
 function VosMatrix(){
 	//LMS錐体の反応値への変換行列
@@ -106,6 +120,9 @@ function VosMatrix(){
 function eMatrix(){
 	//XYZ表色系における等エネルギー白色
 	return math.matrix(	[0.333, 0.333, 0.333] );
-
 }
 
+function WhitePointMatrix(){
+	//D50における白色点のXYZ値(Xn, Yn, Zn) = ( 0.9642, 1.0, 0.8249 )
+	return math.matrix(	[0.9642, 1.0, 0.8249] );
+}
