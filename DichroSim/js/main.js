@@ -29,7 +29,10 @@ function main() {
 	console.log("mColor1",mColor1);
 	console.log("lmsColor1",lmsColor1);
 	console.log("xyzColor1",xyzColor1);
-	console.log("normaliseY",LabColor1);
+	alert("LabColor1 = "+LabColor1);
+	
+	var test = math.matrix([32.3,26.6,13.3]);
+	alert("XYZ 32.3 26.6 13.3 = "+transXYZtoLab(test));
 	
 //	document.write("normaliseY"+LabColor1+"<br>");
 

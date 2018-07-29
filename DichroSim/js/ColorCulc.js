@@ -7,6 +7,8 @@
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache-2.0
  */
 
+//This code must use math.js.
+
 function ColorData(){
 	this.x = 0;
 	this.y = 0;
@@ -104,17 +106,25 @@ function transLMStoProtan(inLMS){
 
 function transXYZtoLab(inXYZ){
 	var WhitePoint = WhitePointMatrix();
-	//心理計測明度(psychometric lightness)
-	var PL = 0;
+	
+	//LabのL成分―心理計測明度(psychometric lightness)―を求める
+	var L = 0;
 	var threshold = 0.008856;
+	var normaliseX = inXYZ.get([0])/WhitePoint.get([0]);
 	var normaliseY = inXYZ.get([1])/WhitePoint.get([1]);
+	var normaliseZ = inXYZ.get([2])/WhitePoint.get([2]);
 	if(normaliseY>threshold){
-		PL = math.cbrt(normaliseY)*116-16;
+		L = math.cbrt(normaliseY)*116-16;
 		}
 	else{
-		PL = normaliseY*903.29;
+		L = normaliseY*903.29;
 	}
-	return PL;
+	
+	//Labのa,b成分を求める
+	var a = 500 * (math.cbrt(normaliseX)-math.cbrt(normaliseY));
+	var b = 200 * (math.cbrt(normaliseY)-math.cbrt(normaliseZ));
+	
+	return math.matrix([L,a,b]);
 }
 
 function VosMatrix(){
