@@ -29,10 +29,11 @@ function main() {
 	console.log("mColor1",mColor1);
 	console.log("lmsColor1",lmsColor1);
 	console.log("xyzColor1",xyzColor1);
-	alert("LabColor1 = "+LabColor1);
+//	alert("LabColor1 = "+LabColor1);
 	
-	var test = math.matrix([32.3,26.6,13.3]);
-	alert("XYZ 32.3 26.6 13.3 = "+transXYZtoLab(test));
+	var test1 = math.matrix([50,50,0]);
+	var test2 = math.matrix([40,50,0]);
+	alert("[50,50,0]と[40,50,0]の色差= "+culcColorDelta(test1,test2));
 	
 //	document.write("normaliseY"+LabColor1+"<br>");
 

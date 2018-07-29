@@ -9,6 +9,12 @@
 
 //This code must use math.js.
 
+
+//////////////////////////////////////////////
+//ColorDataオブジェクト関連
+//////////////////////////////////////////////
+
+//ColorDataオブジェクトの定義
 function ColorData(){
 	this.x = 0;
 	this.y = 0;
@@ -16,6 +22,9 @@ function ColorData(){
 	return	this;
 }
 
+//ColorDataオブジェクトにデータを入力するメソッド
+//In:Number,Number,Number
+//Return:ColorData(Object)
 function setColorData(x,y,Y){
 	var obj = new ColorData();
 	obj.x = Number(x);
@@ -24,7 +33,9 @@ function setColorData(x,y,Y){
 	return	obj;
 }
 
-
+//ColorDataオブジェクトからXYZ配列を算出するメソッド
+//In:ColorData(Object)
+//Return:math.matrix(Object)
 function culcXYZ(inColorData){
 	var obj = new ColorData();
 	obj.x = Number(inColorData.x);
@@ -38,6 +49,9 @@ function culcXYZ(inColorData){
 	return	math.matrix([tmpX,obj.Y,tmpZ]);
 }
 
+//XYZ配列からColorDataオブジェクトを算出するメソッド
+//In:math.matrix(Object)
+//Return:ColorData(Object)
 function culcSmallXYZ(inXYZ){
 	var obj = new ColorData();
 	
@@ -53,12 +67,17 @@ function culcSmallXYZ(inXYZ){
 	return	obj;
 }
 
+//ColorDataオブジェクトからXYZ配列を生成するメソッド
+//In:ColorData(Object)
+//Return:math.matrix(Object)
 function makeXYZMatrix(inColorData){
 	var mXYZ = culcXYZ(inColorData);
-	//var tmp = math.matrix([inColorData.X,inColorData.Y,inColorData.Z]);
 	return	mXYZ;
 }
 
+//ColorDataオブジェクト同士の加算をするメソッド(加法混色)
+//In:ColorData(Object)
+//Return:ColorData(Object)
 function addColor(inColor1, inColor2){
 	var tmpColor = new ColorData();
 	var sumXYZ;
@@ -73,6 +92,9 @@ function addColor(inColor1, inColor2){
 	return tmpColor;
 }
 
+//ColorDataオブジェクト同士の減算をするメソッド(減法混色)
+//In:ColorData(Object)
+//Return:ColorData(Object)
 function subColor(inColor1, inColor2){
 	var tmpColor = new ColorData();
 	tmpColor.X = inColor1.X-inColor2.X;
@@ -84,6 +106,31 @@ function subColor(inColor1, inColor2){
 	return tmpColor;
 }
 
+
+
+//////////////////////////////////////////////
+//色覚タイプ関連
+//////////////////////////////////////////////
+
+//錐体分光感度に基づいて、XYZをLMSに変換するための変化行列定義
+function VosMatrix(){
+	//LMS錐体の反応値への変換行列
+	//Vos(1978)の錐体分光感度を採用
+	return math.matrix([	[0.15516, 0.54307, -0.03701],
+							[-0.15516, 0.45692, 0.02969],
+							[0, 0, 0.00732]]);
+
+}
+
+//色覚タイプの変換に利用する等エネルギー白色定義
+function eMatrix(){
+	//XYZ表色系における等エネルギー白色
+	return math.matrix(	[0.333, 0.333, 0.333] );
+}
+
+//LMS配列からXYZ配列を算出するメソッド
+//In:math.matrix(Object)
+//Return:math.matrix(Object)
 function transLMStoXYZ(inLMS){
 	var invVos = math.inv(VosMatrix());
 	var mColor = math.multiply(invVos,inLMS);
@@ -91,6 +138,9 @@ function transLMStoXYZ(inLMS){
 	return retColor;
 }
 
+//XYZ配列からLMS配列を算出するメソッド
+//In:math.matrix(Object)
+//Return:math.matrix(Object)
 function transXYZtoLMS(inXYZ){
 	var Vos = VosMatrix();
 	//var mColor = makeXYZMatrix(inColor);
@@ -98,12 +148,34 @@ function transXYZtoLMS(inXYZ){
 	return LMS;
 }
 
+//LMS配列からProtan変換したLMS配列を算出するメソッド
+//In:math.matrix(Object)
+//Return:math.matrix(Object)
 function transLMStoProtan(inLMS){
 	var eXYZ = eMatrix();
 	var eLMS = transXYZtoLMS(eXYZ);
+	
+	//TODO
+	//参考文献に基づいて色覚タイプ変換を実装する。
+	
 	return eLMS;
 }
 
+
+
+//////////////////////////////////////////////
+//色差算出関連
+//////////////////////////////////////////////
+
+//Lab変換に利用する白色点定義
+function WhitePointMatrix(){
+	//D50における白色点のXYZ値(Xn, Yn, Zn) = ( 0.9642, 1.0, 0.8249 )
+	return math.matrix(	[0.9642, 1.0, 0.8249] );
+}
+
+//XYZ配列からLab配列を算出するメソッド
+//In:math.matrix(Object)
+//Return:math.matrix(Object)
 function transXYZtoLab(inXYZ){
 	var WhitePoint = WhitePointMatrix();
 	
@@ -127,21 +199,9 @@ function transXYZtoLab(inXYZ){
 	return math.matrix([L,a,b]);
 }
 
-function VosMatrix(){
-	//LMS錐体の反応値への変換行列
-	//Vos(1978)の錐体分好感度を採用
-	return math.matrix([	[0.15516, 0.54307, -0.03701],
-							[-0.15516, 0.45692, 0.02969],
-							[0, 0, 0.00732]]);
-
-}
-
-function eMatrix(){
-	//XYZ表色系における等エネルギー白色
-	return math.matrix(	[0.333, 0.333, 0.333] );
-}
-
-function WhitePointMatrix(){
-	//D50における白色点のXYZ値(Xn, Yn, Zn) = ( 0.9642, 1.0, 0.8249 )
-	return math.matrix(	[0.9642, 1.0, 0.8249] );
+//Lab配列同士の色差を算出するメソッド
+//In:math.matrix(Object)
+//Return:Number
+function culcColorDelta(inLab1,inLab2){
+	return math.distance(inLab1,inLab2);
 }
