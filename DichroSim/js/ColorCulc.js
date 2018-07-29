@@ -1,3 +1,12 @@
+/**
+ * Color calculation objects.
+ *
+ * @package   DichroSim
+ * @author    Kahiro Matsudaira <0204.kahiro@gmail.com>
+ * @copyright 2018 Kahiro Matsudaira
+ * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache-2.0
+ */
+
 function ColorData(){
 	this.x = 0;
 	this.y = 0;
