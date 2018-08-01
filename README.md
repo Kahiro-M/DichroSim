@@ -1,6 +1,5 @@
 # Dichromat distance simulator
-
-———
+---
 
 ## 二色型色覚色差シミュレーター
 
