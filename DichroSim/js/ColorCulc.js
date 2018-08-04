@@ -128,14 +128,34 @@ function eMatrix(){
 	return math.matrix(	[0.333, 0.333, 0.333] );
 }
 
+//色覚タイプの変換(Protan/Deutan)に利用する波長575nmのLMS値定義
+function LMS575nm(){
+	return math.matrix(	[0.478775, 0.520202, 0.001023] );
+}
+
+//色覚タイプの変換(Protan/Deutan)に利用する波長475nmのLMS値定義
+function LMS475nm(){
+	return math.matrix(	[0.109594, 0.086843, 0.803563] );
+}
+
+//色覚タイプの変換(Tritan)に利用する波長660nmのLMS値定義
+function LMS660nm(){
+	return math.matrix(	[0.729969, 0.270031, 0.000000] );
+}
+
+//色覚タイプの変換(Tritan)に利用する波長485nmのLMS値定義
+function LMS485nm(){
+	return math.matrix(	[0.068706, 0.200723, 0.730571] );
+}
+
 //LMS配列からXYZ配列を算出するメソッド
 //In:math.matrix(Object)
 //Return:math.matrix(Object)
 function transLMStoXYZ(inLMS){
 	var invVos = math.inv(VosMatrix());
 	var mColor = math.multiply(invVos,inLMS);
-	var retColor = culcSmallXYZ(mColor);
-	return retColor;
+//	var retColor = culcSmallXYZ(mColor);
+	return mColor;
 }
 
 //XYZ配列からLMS配列を算出するメソッド
@@ -158,7 +178,28 @@ function transLMStoProtan(inLMS){
 	//TODO
 	//参考文献に基づいて色覚タイプ変換を実装する。
 	
-	return eLMS;
+	//ProtanはLMS空間のL軸情報が喪失するのでMS平面に投影される。
+	//入力値の傾きが等エネルギー白色より小さい場合は575nm、大きい場合は475nmに投影される。
+
+	//Protanで投影される面(575nmとeLMSの平面 or 475nmとeLMSの平面)を調べる。
+	var inTan = inLMS.get([2])/inLMS.get([1]);
+	var eTan = eLMS.get([2])/eLMS.get([1]);
+	var dichromatLMS;
+	
+	if(inTan<eTan){
+		dichromatLMS = LMS575nm();
+	}
+	else{
+		dichromatLMS = LMS475nm();
+	}
+	
+	//Protan 変換の場合はL軸に沿って投影させる
+	var a = eLMS.get([1]) * dichromatLMS.get([2]) - eLMS.get([2]) * dichromatLMS.get([1]);
+	var b = eLMS.get([2]) * dichromatLMS.get([0]) - eLMS.get([0]) * dichromatLMS.get([2]);
+	var c = eLMS.get([0]) * dichromatLMS.get([1]) - eLMS.get([1]) * dichromatLMS.get([0]);
+	
+	var protanL = (b*inLMS.get([1]) + c*inLMS.get([2]))/a*-1;		
+	return math.matrix([ protanL, inLMS.get([1]), inLMS.get([2]) ]);
 }
 
 

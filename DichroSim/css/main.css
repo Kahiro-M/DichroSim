@@ -1,19 +1,39 @@
 .title {
     font-size: 30px;
     color:#ff0000;
-    margin-bottom: 30px;
+    margin-bottom: ;
 }
 
 .comment {
-    border: solid 3px #ff0000;
+    border: solid 3px #ff00FF;
     font-size: 13px;
     color: #333333;
     background: #ffffff;
-    width: 300px;
+    width: 800px;
     height: 100px;
     padding: 20px;
     margin-bottom: 30px;
 }
 input{
-	width: 50px;
+	width: 60px;
+}
+.InputColors{
+	/* この要素はflexコンテナとなり、子要素は自動的にflexアイテムとなる */
+	display: flex;
+
+	/* 横並びに表示する */
+	flex-direction: row;
+
+	/* 画面幅に収まらない場合は折り返す */
+	flex-wrap: wrap;
+/*	border: solid 3px #ff0000;*/
+	width: 300px;
+/*
+	float: left;
+*/
+}
+
+.Returns{
+/*    border: solid 3px #ff0000;*/
+	width: 800px;
 }

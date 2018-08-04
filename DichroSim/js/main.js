@@ -35,7 +35,30 @@ function main() {
 	var test2 = math.matrix([40,50,0]);
 	// alert("[50,50,0]と[40,50,0]の色差= "+culcColorDelta(test1,test2));
 
-	document.formInput.Ret1.value= culcColorDelta(test1,test2);
+	document.formInput.Ret1.value= culcColorDelta(test1,test2);	
+	
+	var IndexElements = document.getElementsByClassName("comment");
+	
+	IndexElements[0].innerHTML = "";
+//	IndexElements[0].textContent = culcColorDelta(test1,test2);
+	IndexElements[0].innerHTML += "inXYZ "+ mColor1;	
+	
+	IndexElements[0].innerHTML += "<br>";
+	
+	IndexElements[0].innerHTML += "inLMS "+ lmsColor1;	
+	
+	IndexElements[0].innerHTML += "<br>";
+
+	
+	IndexElements[0].innerHTML += "pLMS "+ transLMStoProtan(lmsColor1);
+	var test3 = transLMStoProtan(lmsColor1);
+		
+	IndexElements[0].innerHTML += "<br>";
+	
+	IndexElements[0].innerHTML += "pXYZ "+ transLMStoXYZ(test3);
+	
+	
+
 
 //	document.write("normaliseY"+LabColor1+"<br>");
 

@@ -16,43 +16,51 @@
 
 <!-- HTML部分 -->
 <body bgcolor="#e2e2e2">
-	<input type="button" name="sample" value="JavaScriptを実行" onClick="main()">
-
+	<input id="DoItButton" type="button" name="sample" value="Culc from xyY" onClick="main()">
+	
 	<form name="formInput">
-		<p>
-			Color 1
-		</p>
-		<p>
-			xyY<br>
-			<input name="Color1_x" value=0.3 type="number">
-			<input name="Color1_y" value=0.3 type="number">
-			<input name="Color1_Y" value=80 type="number">
-		</p>
-		
-		<p>
-			Color 2
-		</p>
-		<p>
-			xyY<br>
-			<input name="Color2_x" value=0.5 type="number">
-			<input name="Color2_y" value="0.2"type="number">
-			<input name="Color2_Y" value=90 type="number">
-		</p>
+		<div class="InputColors">
+			<p>
+				Color 1
+			</p>
+			<p>
+				xyY<br>
+				<input name="Color1_x" value=0.3 type="number">
+				<input name="Color1_y" value=0.3 type="number">
+				<input name="Color1_Y" value=80 type="number">
+			</p>
+		</div>
+		<div class="InputColors">
+			<p>
+				Color 2
+			</p>
+			<p>
+				xyY<br>
+				<input name="Color2_x" value=0.5 type="number">
+				<input name="Color2_y" value="0.2"type="number">
+				<input name="Color2_Y" value=90 type="number">
+			</p>
+		</div>
+		<div class="InputColors">
 		<p>
 			Return<br>
 			<input name="Ret1" type="number">
 			<input name="Ret2" type="number">
 			<input name="Ret3" type="number">
 		</p>
+		</div>
 	</form>
 
-	<div class="title">
-		Javascriptの練習
-	</div>
+	<div class="Returns">
+		<div class="title">
+			Javascriptの練習
+		</div>
 
-	<div class="comment">
-		htmlでJavascrpitを複数読み込むことで、異なるファイルの関数を読み込むことができる。<br>
-		htmlをヘッダーファイルの読み込みとするイメージ。
+		<div class="comment">
+			htmlでJavascrpitを複数読み込むことで、異なるファイルの関数を読み込むことができる。<br>
+			htmlをヘッダーファイルの読み込みとするイメージ。
+		</div>
+		
 	</div>
 
 
