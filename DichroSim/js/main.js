@@ -16,52 +16,74 @@ function main() {
 	var mColor2 = makeXYZMatrix(Color2);
 	
 	var lmsColor1 = transXYZtoLMS(mColor1);
+	var lmsColor2 = transXYZtoLMS(mColor2);
+	
 	var xyzColor1 = transLMStoXYZ(lmsColor1);
+	var xyzColor2 = transLMStoXYZ(lmsColor2);
 	
 	var LabColor1 = transXYZtoLab(mColor1);
+	var LabColor2 = transXYZtoLab(mColor2);
 	
-	var protanColor1 = transLMStoProtan(lmsColor1);
+	var protanLMSColor1 = transLMStoProtan(lmsColor1);
+	var protanLMSColor2 = transLMStoProtan(lmsColor2);
+
+	var deutanLMSColor1 = transLMStoDeutan(lmsColor1);
+	var deutanLMSColor2 = transLMStoDeutan(lmsColor2);
 	
+	var protanXYZColor1 = transLMStoXYZ(protanLMSColor1);
+	var protanXYZColor2 = transLMStoXYZ(protanLMSColor2);
+
+	var deutanXYZColor1 = transLMStoXYZ(deutanLMSColor1);
+	var deutanXYZColor2 = transLMStoXYZ(deutanLMSColor2);
+
+	var protanSmallXYZColor1 = culcSmallXYZ(protanXYZColor1);
+	var protanSmallXYZColor2 = culcSmallXYZ(protanXYZColor2);
+
+	var deutanSmallXYZColor1 = culcSmallXYZ(deutanXYZColor1);
+	var deutanSmallXYZColor2 = culcSmallXYZ(deutanXYZColor2);
+
 	var SumColor = addColor(Color1,Color2);
 	var SubColor = subColor(Color1,Color2);
-	
-	console.log("Color1",Color1);
-	console.log("mColor1",mColor1);
-	console.log("lmsColor1",lmsColor1);
-	console.log("xyzColor1",xyzColor1);
-//	alert("LabColor1 = "+LabColor1);
-	
-	var test1 = math.matrix([50,50,0]);
-	var test2 = math.matrix([40,50,0]);
-	// alert("[50,50,0]と[40,50,0]の色差= "+culcColorDelta(test1,test2));
 
-	document.formInput.Ret1.value= culcColorDelta(test1,test2);	
+	document.formInput.Ret1.value= culcColorDelta(LabColor1,LabColor2);	
 	
+	//コメント領域のHTMLを操作して結果を表示する。
 	var IndexElements = document.getElementsByClassName("comment");
 	
+	//いったんリフレッシュ
 	IndexElements[0].innerHTML = "";
-//	IndexElements[0].textContent = culcColorDelta(test1,test2);
-	IndexElements[0].innerHTML += "inXYZ "+ mColor1;	
 	
+	//ここから順に書き込んでいく
+	IndexElements[0].innerHTML += "inXYZColor1 "+ mColor1+"<br>";	
+	IndexElements[0].innerHTML += "inXYZColor2 "+ mColor2+"<br>";	
 	IndexElements[0].innerHTML += "<br>";
-	
-	IndexElements[0].innerHTML += "inLMS "+ lmsColor1;	
-	
-	IndexElements[0].innerHTML += "<br>";
-
-	
-	IndexElements[0].innerHTML += "pLMS "+ transLMStoProtan(lmsColor1);
-	var test3 = transLMStoProtan(lmsColor1);
 		
+	IndexElements[0].innerHTML += "lmsColor1 "+ lmsColor1+"<br>";		
+	IndexElements[0].innerHTML += "lmsColor2 "+ lmsColor2+"<br>";		
+	IndexElements[0].innerHTML += "<br>";
+
+	IndexElements[0].innerHTML += "protanLMSColor1 "+ protanLMSColor1+"<br>";		
+	IndexElements[0].innerHTML += "protanLMSColor2 "+ protanLMSColor2+"<br>";		
+	IndexElements[0].innerHTML += "<br>";
+
+	IndexElements[0].innerHTML += "deutanLMSColor1 "+ deutanLMSColor1+"<br>";		
+	IndexElements[0].innerHTML += "deutanLMSColor2 "+ deutanLMSColor2+"<br>";		
 	IndexElements[0].innerHTML += "<br>";
 	
-	IndexElements[0].innerHTML += "pXYZ "+ transLMStoXYZ(test3);
+	IndexElements[0].innerHTML += "protanXYZColor1 "+ protanXYZColor1+"<br>";		
+	IndexElements[0].innerHTML += "protanXYZColor2 "+ protanXYZColor2+"<br>";		
+	IndexElements[0].innerHTML += "<br>";
 	
+	IndexElements[0].innerHTML += "deutanXYZColor1 "+ deutanXYZColor1+"<br>";		
+	IndexElements[0].innerHTML += "deutanXYZColor2 "+ deutanXYZColor2+"<br>";		
+	IndexElements[0].innerHTML += "<br>";
 	
-
-
-//	document.write("normaliseY"+LabColor1+"<br>");
-
-//	alert(SumColor);
-
+	IndexElements[0].innerHTML += "protanSmallXYZColor1 "+ protanSmallXYZColor1.x+", "+protanSmallXYZColor1.y+"<br>";
+	IndexElements[0].innerHTML += "protanSmallXYZColor2 "+ protanSmallXYZColor2.x+", "+protanSmallXYZColor2.y+"<br>";
+	IndexElements[0].innerHTML += "<br>";
+	
+	IndexElements[0].innerHTML += "deutanSmallXYZColor1 "+ deutanSmallXYZColor1.x+", "+deutanSmallXYZColor1.y+"<br>";
+	IndexElements[0].innerHTML += "deutanSmallXYZColor2 "+ deutanSmallXYZColor2.x+", "+deutanSmallXYZColor2.y+"<br>";
+	IndexElements[0].innerHTML += "<br>";
+	
 }

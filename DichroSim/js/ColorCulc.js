@@ -174,13 +174,9 @@ function transXYZtoLMS(inXYZ){
 function transLMStoProtan(inLMS){
 	var eXYZ = eMatrix();
 	var eLMS = transXYZtoLMS(eXYZ);
-	
-	//TODO
-	//参考文献に基づいて色覚タイプ変換を実装する。
-	
+		
 	//ProtanはLMS空間のL軸情報が喪失するのでMS平面に投影される。
 	//入力値の傾きが等エネルギー白色より小さい場合は575nm、大きい場合は475nmに投影される。
-
 	//Protanで投影される面(575nmとeLMSの平面 or 475nmとeLMSの平面)を調べる。
 	var inTan = inLMS.get([2])/inLMS.get([1]);
 	var eTan = eLMS.get([2])/eLMS.get([1]);
@@ -193,16 +189,69 @@ function transLMStoProtan(inLMS){
 		dichromatLMS = LMS475nm();
 	}
 	
-	//Protan 変換の場合はL軸に沿って投影させる
-	var a = eLMS.get([1]) * dichromatLMS.get([2]) - eLMS.get([2]) * dichromatLMS.get([1]);
-	var b = eLMS.get([2]) * dichromatLMS.get([0]) - eLMS.get([0]) * dichromatLMS.get([2]);
-	var c = eLMS.get([0]) * dichromatLMS.get([1]) - eLMS.get([1]) * dichromatLMS.get([0]);
+	//二色型色覚の平面に投影するための係数を算出
+	var abc = culcDichromatCoefficient(eLMS,dichromatLMS);
 	
-	var protanL = (b*inLMS.get([1]) + c*inLMS.get([2]))/a*-1;		
+	//Protan変換の場合はL軸に沿って投影させる
+	var protanL = (abc.get([1])*inLMS.get([1]) + abc.get([2])*inLMS.get([2]))/abc.get([0])*-1;		
 	return math.matrix([ protanL, inLMS.get([1]), inLMS.get([2]) ]);
 }
 
+//LMS配列からDeutan変換したLMS配列を算出するメソッド
+//In:math.matrix(Object)
+//Return:math.matrix(Object)
+function transLMStoDeutan(inLMS){
+	var eXYZ = eMatrix();
+	var eLMS = transXYZtoLMS(eXYZ);
+		
+	//DeutanはLMS空間のM軸情報が喪失するのでLS平面に投影される。
+	//入力値の傾きが等エネルギー白色より小さい場合は575nm、大きい場合は475nmに投影される。
+	//Protanで投影される面(575nmとeLMSの平面 or 475nmとeLMSの平面)を調べる。
+	var inTan = inLMS.get([2])/inLMS.get([0]);
+	var eTan = eLMS.get([2])/eLMS.get([0]);
+	var dichromatLMS;
+	
+	if(inTan<eTan){
+		dichromatLMS = LMS575nm();
+	}
+	else{
+		dichromatLMS = LMS475nm();
+	}
+	
+	//二色型色覚の平面に投影するための係数を算出
+	var abc = culcDichromatCoefficient(eLMS,dichromatLMS);
+	
+	//Protan変換の場合はL軸に沿って投影させる
+	var DeutanM = (abc.get([0])*inLMS.get([1]) + abc.get([2])*inLMS.get([2]))/abc.get([1])*-1;		
+	return math.matrix([ inLMS.get([0]), DeutanM, inLMS.get([2]) ]);
+}
 
+//二色型色覚が見ているMS平面,LS平面,LM平面に投影するための係数を算出するメソッド
+//In:math.matrix(Object),math.matrix(Object)
+//Return:math.matrix(Object)
+function culcDichromatCoefficient(inE,inDichro){
+	var a = inE.get([1]) * inDichro.get([2]) - inE.get([2]) * inDichro.get([1]);
+	var b = inE.get([2]) * inDichro.get([0]) - inE.get([0]) * inDichro.get([2]);
+	var c = inE.get([0]) * inDichro.get([1]) - inE.get([1]) * inDichro.get([0]);
+	return math.matrix([a,b,c]);
+}
+
+//ProtanとDeutanで投影される面を調べて算出するメソッド
+//In:math.matrix(Object),math.matrix(Object)
+//Return:math.matrix(Object)
+function culcDichromatLMS(inE,inQ){
+	var inTan = inQ.get([2])/inQ.get([1]);
+	var eTan = inE.get([2])/inE.get([1]);
+	var dichromatLMS;
+	
+	if(inTan<eTan){
+		dichromatLMS = LMS575nm();
+	}
+	else{
+		dichromatLMS = LMS475nm();
+	}
+	return dichromatLMS;
+}
 
 //////////////////////////////////////////////
 //色差算出関連
