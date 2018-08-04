@@ -33,8 +33,10 @@ function main() {
 	
 	var test1 = math.matrix([50,50,0]);
 	var test2 = math.matrix([40,50,0]);
-	alert("[50,50,0]と[40,50,0]の色差= "+culcColorDelta(test1,test2));
-	
+	// alert("[50,50,0]と[40,50,0]の色差= "+culcColorDelta(test1,test2));
+
+	document.formInput.Ret1.value= culcColorDelta(test1,test2);
+
 //	document.write("normaliseY"+LabColor1+"<br>");
 
 //	alert(SumColor);
