@@ -1,0 +1,51 @@
+@startuml
+title クラス図(PlantUMLにて作成) 
+
+class 入力色{
+ カラーチップ番号
+ xyY値
+ Lab値
+ - カラーチップ番号からxyY値参照()
+ - カラーチップ番号からLab値参照()
+}
+
+package 色度値計算{
+ class XYZ値算出
+ class Lab値算出
+}
+
+class XYZ値算出{
+ XYZ値
+ -xyY値からXYZ値算出()
+ -Lab値からXYZ値算出()
+}
+
+class Lab値算出{
+ Lab値
+ -XYZ値からLab値算出()
+}
+
+class 二色型色覚を再現{
+ XYZ値
+ -XYZ値からProtan 再現()
+ -XYZ値からDeutan 再現()
+}
+
+class 色差判定{
+ Δ色差値
+ 色弁別閾値
+ -Lab値から色差算出()
+ -色差と色弁別閾値を比較()
+}
+
+入力色 --> XYZ値算出
+XYZ値算出 -- 二色型色覚を再現
+XYZ値算出 -> Lab値算出
+
+Lab値算出 -> 色差判定
+
+
+
+
+
+@enduml
