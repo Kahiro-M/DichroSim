@@ -1,5 +1,5 @@
 /**
- * Color calculation objects.
+ * Dichromat simlation objects.
  *
  * @package   DichroSim
  * @author    Kahiro Matsudaira <0204.kahiro@gmail.com>
@@ -8,105 +8,6 @@
  */
 
 //This code must use math.js.
-
-
-//////////////////////////////////////////////
-//ColorDataオブジェクト関連
-//////////////////////////////////////////////
-
-//ColorDataオブジェクトの定義
-function ColorData(){
-	this.x = 0;
-	this.y = 0;
-	this.Y = 0;
-	return	this;
-}
-
-//ColorDataオブジェクトにデータを入力するメソッド
-//In:Number,Number,Number
-//Return:ColorData(Object)
-function setColorData(x,y,Y){
-	var obj = new ColorData();
-	obj.x = Number(x);
-	obj.y = Number(y);
-	obj.Y = Number(Y);
-	return	obj;
-}
-
-//ColorDataオブジェクトからXYZ配列を算出するメソッド
-//In:ColorData(Object)
-//Return:math.matrix(Object)
-function culcXYZ(inColorData){
-	var obj = new ColorData();
-	obj.x = Number(inColorData.x);
-	obj.y = Number(inColorData.y);
-	obj.Y = Number(inColorData.Y);
-
-	var tmpz = 1-(obj.x+obj.y);
-	var tmpX = (obj.x/obj.y)*obj.Y;
-	var tmpZ = (tmpz/obj.y)*obj.Y;
-	
-	return	math.matrix([tmpX,obj.Y,tmpZ]);
-}
-
-//XYZ配列からColorDataオブジェクトを算出するメソッド
-//In:math.matrix(Object)
-//Return:ColorData(Object)
-function culcSmallXYZ(inXYZ){
-	var obj = new ColorData();
-	
-	var tmpX = inXYZ.get([0]);
-	var tmpY = inXYZ.get([1]);
-	var tmpZ = inXYZ.get([2]);
-	
-	var sumXYZ = tmpX+tmpY+tmpZ;
-
-	obj.Y = tmpY;
-	obj.x = tmpX/sumXYZ;
-	obj.y = tmpY/sumXYZ;
-	return	obj;
-}
-
-//ColorDataオブジェクトからXYZ配列を生成するメソッド
-//In:ColorData(Object)
-//Return:math.matrix(Object)
-function makeXYZMatrix(inColorData){
-	var mXYZ = culcXYZ(inColorData);
-	return	mXYZ;
-}
-
-//ColorDataオブジェクト同士の加算をするメソッド(加法混色)
-//In:ColorData(Object)
-//Return:ColorData(Object)
-function addColor(inColor1, inColor2){
-	var tmpColor = new ColorData();
-	var sumXYZ;
-	tmpColor.X = inColor1.X+inColor2.X;
-	tmpColor.Y = inColor1.Y+inColor2.Y;
-	tmpColor.Z = inColor1.Z+inColor2.Z;
-	sumXYZ = tmpColor.X+tmpColor.Y+tmpColor.Z;
-	tmpColor.x = tmpColor.X / sumXYZ;
-	tmpColor.y = tmpColor.Y / sumXYZ;
-	tmpColor.z = tmpColor.Z / sumXYZ;
-	
-	return tmpColor;
-}
-
-//ColorDataオブジェクト同士の減算をするメソッド(減法混色)
-//In:ColorData(Object)
-//Return:ColorData(Object)
-function subColor(inColor1, inColor2){
-	var tmpColor = new ColorData();
-	tmpColor.X = inColor1.X-inColor2.X;
-	tmpColor.Y = inColor1.Y-inColor2.Y;
-	tmpColor.Z = inColor1.Z-inColor2.Z;
-	tmpColor.x = tmpColor.X / (tmpColor.X-tmpColor.Y-tmpColor.Z);
-	tmpColor.y = tmpColor.Y / (tmpColor.X-tmpColor.Y-tmpColor.Z);
-	tmpColor.z = tmpColor.Z / (tmpColor.X-tmpColor.Y-tmpColor.Z);
-	return tmpColor;
-}
-
-
 
 //////////////////////////////////////////////
 //色覚タイプ関連
@@ -251,47 +152,4 @@ function culcDichromatLMS(inE,inQ){
 		dichromatLMS = LMS475nm();
 	}
 	return dichromatLMS;
-}
-
-//////////////////////////////////////////////
-//色差算出関連
-//////////////////////////////////////////////
-
-//Lab変換に利用する白色点定義
-function WhitePointMatrix(){
-	//D50における白色点のXYZ値(Xn, Yn, Zn) = ( 0.9642, 1.0, 0.8249 )
-	return math.matrix(	[0.9642, 1.0, 0.8249] );
-}
-
-//XYZ配列からLab配列を算出するメソッド
-//In:math.matrix(Object)
-//Return:math.matrix(Object)
-function transXYZtoLab(inXYZ){
-	var WhitePoint = WhitePointMatrix();
-	
-	//LabのL成分―心理計測明度(psychometric lightness)―を求める
-	var L = 0;
-	var threshold = 0.008856;
-	var normaliseX = inXYZ.get([0])/WhitePoint.get([0]);
-	var normaliseY = inXYZ.get([1])/WhitePoint.get([1]);
-	var normaliseZ = inXYZ.get([2])/WhitePoint.get([2]);
-	if(normaliseY>threshold){
-		L = math.cbrt(normaliseY)*116-16;
-		}
-	else{
-		L = normaliseY*903.29;
-	}
-	
-	//Labのa,b成分を求める
-	var a = 500 * (math.cbrt(normaliseX)-math.cbrt(normaliseY));
-	var b = 200 * (math.cbrt(normaliseY)-math.cbrt(normaliseZ));
-	
-	return math.matrix([L,a,b]);
-}
-
-//Lab配列同士の色差を算出するメソッド
-//In:math.matrix(Object)
-//Return:Number
-function culcColorDelta(inLab1,inLab2){
-	return math.distance(inLab1,inLab2);
 }

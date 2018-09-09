@@ -6,7 +6,6 @@ class 入力色{
  xyY値
  Lab値
  - カラーチップ番号からxyY値参照()
- - カラーチップ番号からLab値参照()
 }
 
 package 色度値計算{
@@ -17,7 +16,6 @@ package 色度値計算{
 class XYZ値算出{
  XYZ値
  -xyY値からXYZ値算出()
- -Lab値からXYZ値算出()
 }
 
 class Lab値算出{
@@ -30,6 +28,7 @@ class 二色型色覚を再現{
  -XYZ値からProtan 再現()
  -XYZ値からDeutan 再現()
 }
+note right :Hans Brettle(1997)： \n Computerized simulation of color appearance for dichromats
 
 class 色差判定{
  Δ色差値

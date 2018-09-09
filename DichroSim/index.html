@@ -1,69 +1,80 @@
 <!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>Javascrpitの練習ページ</title>
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/Prime.js"></script>
-<script type="text/javascript" src="js/Form.js"></script>
-<script type="text/javascript" src="js/ColorCulc.js"></script>
-<!-- 数学ライブラリ -->
-<!-- 関数の使い方は⇒http://techc.omorita.com/topics/mathjs/ -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/5.0.3/math.js"></script>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascrpitの練習ページ</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<!-- 数学ライブラリ -->
+		<!-- 関数の使い方は⇒http://techc.omorita.com/topics/mathjs/ -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
-</head>
+		<!-- 画面描画ライブラリ -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/5.0.3/math.js"></script>
 
-<!-- HTML部分 -->
-<body bgcolor="#e2e2e2">
-	<input id="DoItButton" type="button" name="sample" value="Culc from xyY" onClick="main()">
-	
-	<form name="formInput">
-		<div class="InputColors">
+		<!-- 色計算ライブラリ -->
+		<script type="text/javascript" src="lib/DichroSim/InputColor.js"></script>
+		<script type="text/javascript" src="lib/DichroSim/CulcXYZ.js"></script>
+		<script type="text/javascript" src="lib/DichroSim/BeDichromat.js"></script>
+		<script type="text/javascript" src="lib/DichroSim/CulcLab.js"></script>
+
+
+		<!-- 処理をまとめているscript -->
+		<script type="text/javascript" src="js/main.js"></script>
+		<!--<script type="text/javascript" src="js/Prime.js"></script>-->
+		<script type="text/javascript" src="js/Form.js"></script>
+
+	</head>
+
+	<!-- HTML部分 -->
+	<body bgcolor="#e2e2e2">
+		<input id="DoItButton" type="button" name="sample" value="Culc from xyY" onClick="main()">
+
+		<form name="formInput">
+			<div class="InputColors">
+				<p>
+					Color 1
+				</p>
+				<p>
+					xyY<br>
+					<input name="Color1_x" value=0.3 type="number">
+					<input name="Color1_y" value=0.3 type="number">
+					<input name="Color1_Y" value=80 type="number">
+				</p>
+			</div>
+			<div class="InputColors">
+				<p>
+					Color 2
+				</p>
+				<p>
+					xyY<br>
+					<input name="Color2_x" value=0.4 type="number">
+					<input name="Color2_y" value=0.4 type="number">
+					<input name="Color2_Y" value=80 type="number">
+				</p>
+			</div>
+			<div class="InputColors">
 			<p>
-				Color 1
+				Return<br>
+				<input name="Ret1" type="number">
+				<input name="Ret2" type="number">
+				<input name="Ret3" type="number">
 			</p>
-			<p>
-				xyY<br>
-				<input name="Color1_x" value=0.3 type="number">
-				<input name="Color1_y" value=0.3 type="number">
-				<input name="Color1_Y" value=80 type="number">
-			</p>
-		</div>
-		<div class="InputColors">
-			<p>
-				Color 2
-			</p>
-			<p>
-				xyY<br>
-				<input name="Color2_x" value=0.4 type="number">
-				<input name="Color2_y" value=0.4 type="number">
-				<input name="Color2_Y" value=80 type="number">
-			</p>
-		</div>
-		<div class="InputColors">
-		<p>
-			Return<br>
-			<input name="Ret1" type="number">
-			<input name="Ret2" type="number">
-			<input name="Ret3" type="number">
-		</p>
-		</div>
-	</form>
+			</div>
+		</form>
 
-	<div class="Returns">
-		<div class="title">
-			Javascriptの練習
-		</div>
+		<div class="Returns">
+			<div class="title">
+				Javascriptの練習
+			</div>
 
-		<div class="comment">
-			htmlでJavascrpitを複数読み込むことで、異なるファイルの関数を読み込むことができる。<br>
-			htmlをヘッダーファイルの読み込みとするイメージ。
+			<div class="comment">
+				htmlでJavascrpitを複数読み込むことで、異なるファイルの関数を読み込むことができる。<br>
+				htmlをヘッダーファイルの読み込みとするイメージ。
+			</div>
+
 		</div>
-		
-	</div>
 
 
 
-</body>
+	</body>
 </html>

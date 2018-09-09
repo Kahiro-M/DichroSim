@@ -2,7 +2,7 @@
 title アクティビティ図(PlantUMLにて作成) 
 
 (*) ->"色を入力"
- note right: カラーチップ指定 \n xyYを入力 \n Labを入力
+ note right: カラーチップ指定 \n xyYを入力
 
 if "入力完了?" then
  ->[yes] "XYZ値算出"
