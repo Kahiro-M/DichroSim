@@ -12,40 +12,63 @@ function main() {
 						document.formInput.Color2_y.value,
 						document.formInput.Color2_Y.value	);
 
-	var mColor1 = makeXYZMatrix(Color1);
-	var mColor2 = makeXYZMatrix(Color2);
+	//////計算の前処理//////
+	//inputフォームのデータを配列に格納
+	var commonXYZColor1 = makeXYZMatrix(Color1);
+	var commonXYZColor2 = makeXYZMatrix(Color2);
 	
-	var lmsColor1 = transXYZtoLMS(mColor1);
-	var lmsColor2 = transXYZtoLMS(mColor2);
+
+	//////色覚タイプ変換(XYZ->LMS->L'M'S'->X'Y'Z')の処理//////
+	//XYZ値をLMS値に変換
+	var lmsColor1 = transXYZtoLMS(commonXYZColor1);
+	var lmsColor2 = transXYZtoLMS(commonXYZColor2);
 	
-	var xyzColor1 = transLMStoXYZ(lmsColor1);
-	var xyzColor2 = transLMStoXYZ(lmsColor2);
-	
-	var LabColor1 = transXYZtoLab(mColor1);
-	var LabColor2 = transXYZtoLab(mColor2);
-	
+	//LMS値をProtanLMS値に変換
 	var protanLMSColor1 = transLMStoProtan(lmsColor1);
 	var protanLMSColor2 = transLMStoProtan(lmsColor2);
 
+	//LMS値をDeutanLMS値に変換
 	var deutanLMSColor1 = transLMStoDeutan(lmsColor1);
 	var deutanLMSColor2 = transLMStoDeutan(lmsColor2);
 	
+	//ProtanLMS値をProtanXYZ値に変換
 	var protanXYZColor1 = transLMStoXYZ(protanLMSColor1);
 	var protanXYZColor2 = transLMStoXYZ(protanLMSColor2);
 
+	//DeutanLMS値をDeutanXYZ値に変換
 	var deutanXYZColor1 = transLMStoXYZ(deutanLMSColor1);
 	var deutanXYZColor2 = transLMStoXYZ(deutanLMSColor2);
 
+	//ProtanXYZ値からProtanSmallXYZ値を算出
 	var protanSmallXYZColor1 = culcSmallXYZ(protanXYZColor1);
 	var protanSmallXYZColor2 = culcSmallXYZ(protanXYZColor2);
 
+	//DeutanXYZ値からDeutanSmallXYZ値を算出
 	var deutanSmallXYZColor1 = culcSmallXYZ(deutanXYZColor1);
 	var deutanSmallXYZColor2 = culcSmallXYZ(deutanXYZColor2);
 
+	//C型におけるColor1とColor2の加算と減算
 	var SumColor = addColor(Color1,Color2);
 	var SubColor = subColor(Color1,Color2);
+		
 
-	document.formInput.Ret1.value= culcColorDelta(LabColor1,LabColor2);	
+	//////色覚タイプごとの色差計算処理//////
+	//LMS値をLab値に変換(C型での色差計算用)
+	var commonLabColor1 = transXYZtoLab(commonXYZColor1);
+	var commonLabColor2 = transXYZtoLab(commonXYZColor2);
+	
+	//LMS値をLab値に変換(P型での色差計算用)
+	var protanLabColor1 = transXYZtoLab(protanXYZColor1);
+	var protanLabColor2 = transXYZtoLab(protanXYZColor2);
+	
+	//LMS値をLab値に変換(D型での色差計算用)
+	var deutanLabColor1 = transXYZtoLab(deutanXYZColor1);
+	var deutanLabColor2 = transXYZtoLab(deutanXYZColor2);
+
+	
+	document.formInput.Ret1.value= culcColorDelta(commonLabColor1,commonLabColor2);	
+	document.formInput.Ret2.value= culcColorDelta(protanLabColor1,protanLabColor2);	
+	document.formInput.Ret3.value= culcColorDelta(deutanLabColor1,deutanLabColor2);	
 	
 	//コメント領域のHTMLを操作して結果を表示する。
 	var IndexElements = document.getElementsByClassName("comment");
@@ -54,8 +77,8 @@ function main() {
 	IndexElements[0].innerHTML = "";
 	
 	//ここから順に書き込んでいく
-	IndexElements[0].innerHTML += "inXYZColor1 "+ mColor1+"<br>";	
-	IndexElements[0].innerHTML += "inXYZColor2 "+ mColor2+"<br>";	
+	IndexElements[0].innerHTML += "inXYZColor1 "+ commonXYZColor1+"<br>";	
+	IndexElements[0].innerHTML += "inXYZColor2 "+ commonXYZColor2+"<br>";	
 	IndexElements[0].innerHTML += "<br>";
 		
 	IndexElements[0].innerHTML += "lmsColor1 "+ lmsColor1+"<br>";		
@@ -86,4 +109,22 @@ function main() {
 	IndexElements[0].innerHTML += "deutanSmallXYZColor2 "+ deutanSmallXYZColor2.x+", "+deutanSmallXYZColor2.y+"<br>";
 	IndexElements[0].innerHTML += "<br>";
 	
+	IndexElements[0].innerHTML += "commonLabColor1 "+ commonLabColor1+"<br>";	
+	IndexElements[0].innerHTML += "commonLabColor2 "+ commonLabColor2+"<br>";	
+	IndexElements[0].innerHTML += "<br>";
+	
+	IndexElements[0].innerHTML += "protanLabColor1 "+ protanLabColor1+"<br>";	
+	IndexElements[0].innerHTML += "protanLabColor2 "+ protanLabColor2+"<br>";	
+	IndexElements[0].innerHTML += "<br>";
+	
+	IndexElements[0].innerHTML += "deutanLabColor1 "+ deutanLabColor1+"<br>";	
+	IndexElements[0].innerHTML += "deutanLabColor2 "+ deutanLabColor2+"<br>";	
+	IndexElements[0].innerHTML += "<br>";
+	
+}
+
+
+function OpenClose(){
+	var obj = document.getElementById('openHere').style;
+	obj.display=(obj.display=='none')?'block':'none';
 }
