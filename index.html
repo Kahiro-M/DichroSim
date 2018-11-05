@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Javascrpitの練習ページ</title>
+		<title>色弱色差シミュレータ</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<!-- 数学ライブラリ -->
 		<!-- 関数の使い方は⇒http://techc.omorita.com/topics/mathjs/ -->
@@ -25,8 +25,8 @@
 	</head>
 
 	<!-- HTML部分 -->
-	<body bgcolor="#e2e2e2">
-		<input id="DoItButton" type="button" name="sample" value="Culc from xyY" onClick="main()">
+	<body>
+		<input id="DoItButton" type="button" value="色差計算" onClick="main()">
 
 		<form name="formInput">
 			<div class="InputForms">
@@ -78,8 +78,8 @@
 
 				<!--ここからの部分が折りたたまれる＆展開される-->
 				<div class="comment">
-					htmlでJavascrpitを複数読み込むことで、異なるファイルの関数を読み込むことができる。<br>
-					htmlをヘッダーファイルの読み込みとするイメージ。
+					ここにColor1とColor2の色弱タイプ変換の途中経過が表示される。<br>
+					出力結果の検算に使用すると便利。
 				</div>
 				<!--ここまでの部分が折りたたまれる＆展開される-->
 
