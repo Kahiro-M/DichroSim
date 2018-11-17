@@ -12,6 +12,8 @@ function main() {
 						document.formInput.Color2_y.value,
 						document.formInput.Color2_Y.value	);
 
+	var dichromatSim = new DichromatTrans;
+
 	//////計算の前処理//////
 	//inputフォームのデータを配列に格納
 	var commonXYZColor1 = makeXYZMatrix(Color1);
@@ -20,24 +22,24 @@ function main() {
 
 	//////色覚タイプ変換(XYZ->LMS->L'M'S'->X'Y'Z')の処理//////
 	//XYZ値をLMS値に変換
-	var lmsColor1 = transXYZtoLMS(commonXYZColor1);
-	var lmsColor2 = transXYZtoLMS(commonXYZColor2);
+	var lmsColor1 = dichromatSim.transXYZtoLMS(commonXYZColor1);
+	var lmsColor2 = dichromatSim.transXYZtoLMS(commonXYZColor2);
 	
 	//LMS値をProtanLMS値に変換
-	var protanLMSColor1 = transLMStoProtan(lmsColor1);
-	var protanLMSColor2 = transLMStoProtan(lmsColor2);
+	var protanLMSColor1 = dichromatSim.transLMStoProtan(lmsColor1);
+	var protanLMSColor2 = dichromatSim.transLMStoProtan(lmsColor2);
 
 	//LMS値をDeutanLMS値に変換
-	var deutanLMSColor1 = transLMStoDeutan(lmsColor1);
-	var deutanLMSColor2 = transLMStoDeutan(lmsColor2);
+	var deutanLMSColor1 = dichromatSim.transLMStoDeutan(lmsColor1);
+	var deutanLMSColor2 = dichromatSim.transLMStoDeutan(lmsColor2);
 	
 	//ProtanLMS値をProtanXYZ値に変換
-	var protanXYZColor1 = transLMStoXYZ(protanLMSColor1);
-	var protanXYZColor2 = transLMStoXYZ(protanLMSColor2);
+	var protanXYZColor1 = dichromatSim.transLMStoXYZ(protanLMSColor1);
+	var protanXYZColor2 = dichromatSim.transLMStoXYZ(protanLMSColor2);
 
 	//DeutanLMS値をDeutanXYZ値に変換
-	var deutanXYZColor1 = transLMStoXYZ(deutanLMSColor1);
-	var deutanXYZColor2 = transLMStoXYZ(deutanLMSColor2);
+	var deutanXYZColor1 = dichromatSim.transLMStoXYZ(deutanLMSColor1);
+	var deutanXYZColor2 = dichromatSim.transLMStoXYZ(deutanLMSColor2);
 
 	//ProtanXYZ値からProtanSmallXYZ値を算出
 	var protanSmallXYZColor1 = culcSmallXYZ(protanXYZColor1);
