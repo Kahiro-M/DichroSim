@@ -12,42 +12,43 @@ function main() {
 						document.formInput.Color2_y.value,
 						document.formInput.Color2_Y.value	);
 
-	var dichromatSim = new DichromatTrans;
+	var beDichromat = new DichromatTrans;
+	var culcXYZ = new CulcXYZ;
 
 	//////計算の前処理//////
 	//inputフォームのデータを配列に格納
-	var commonXYZColor1 = makeXYZMatrix(Color1);
-	var commonXYZColor2 = makeXYZMatrix(Color2);
+	var commonXYZColor1 = culcXYZ.makeXYZMatrix(Color1);
+	var commonXYZColor2 = culcXYZ.makeXYZMatrix(Color2);
 	
 
 	//////色覚タイプ変換(XYZ->LMS->L'M'S'->X'Y'Z')の処理//////
 	//XYZ値をLMS値に変換
-	var lmsColor1 = dichromatSim.transXYZtoLMS(commonXYZColor1);
-	var lmsColor2 = dichromatSim.transXYZtoLMS(commonXYZColor2);
+	var lmsColor1 = beDichromat.transXYZtoLMS(commonXYZColor1);
+	var lmsColor2 = beDichromat.transXYZtoLMS(commonXYZColor2);
 	
 	//LMS値をProtanLMS値に変換
-	var protanLMSColor1 = dichromatSim.transLMStoProtan(lmsColor1);
-	var protanLMSColor2 = dichromatSim.transLMStoProtan(lmsColor2);
+	var protanLMSColor1 = beDichromat.transLMStoProtan(lmsColor1);
+	var protanLMSColor2 = beDichromat.transLMStoProtan(lmsColor2);
 
 	//LMS値をDeutanLMS値に変換
-	var deutanLMSColor1 = dichromatSim.transLMStoDeutan(lmsColor1);
-	var deutanLMSColor2 = dichromatSim.transLMStoDeutan(lmsColor2);
+	var deutanLMSColor1 = beDichromat.transLMStoDeutan(lmsColor1);
+	var deutanLMSColor2 = beDichromat.transLMStoDeutan(lmsColor2);
 	
 	//ProtanLMS値をProtanXYZ値に変換
-	var protanXYZColor1 = dichromatSim.transLMStoXYZ(protanLMSColor1);
-	var protanXYZColor2 = dichromatSim.transLMStoXYZ(protanLMSColor2);
+	var protanXYZColor1 = beDichromat.transLMStoXYZ(protanLMSColor1);
+	var protanXYZColor2 = beDichromat.transLMStoXYZ(protanLMSColor2);
 
 	//DeutanLMS値をDeutanXYZ値に変換
-	var deutanXYZColor1 = dichromatSim.transLMStoXYZ(deutanLMSColor1);
-	var deutanXYZColor2 = dichromatSim.transLMStoXYZ(deutanLMSColor2);
+	var deutanXYZColor1 = beDichromat.transLMStoXYZ(deutanLMSColor1);
+	var deutanXYZColor2 = beDichromat.transLMStoXYZ(deutanLMSColor2);
 
 	//ProtanXYZ値からProtanSmallXYZ値を算出
-	var protanSmallXYZColor1 = culcSmallXYZ(protanXYZColor1);
-	var protanSmallXYZColor2 = culcSmallXYZ(protanXYZColor2);
+	var protanSmallXYZColor1 = culcXYZ.culcSmallXYZ(protanXYZColor1);
+	var protanSmallXYZColor2 = culcXYZ.culcSmallXYZ(protanXYZColor2);
 
 	//DeutanXYZ値からDeutanSmallXYZ値を算出
-	var deutanSmallXYZColor1 = culcSmallXYZ(deutanXYZColor1);
-	var deutanSmallXYZColor2 = culcSmallXYZ(deutanXYZColor2);
+	var deutanSmallXYZColor1 = culcXYZ.culcSmallXYZ(deutanXYZColor1);
+	var deutanSmallXYZColor2 = culcXYZ.culcSmallXYZ(deutanXYZColor2);
 
 	//C型におけるColor1とColor2の加算と減算
 	var SumColor = addColor(Color1,Color2);
