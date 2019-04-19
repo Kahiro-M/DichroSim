@@ -1,4 +1,4 @@
-function main() {
+function colorCulc() {
 	"use strict";
 
 	//htmlから引数を取得

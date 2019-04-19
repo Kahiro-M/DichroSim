@@ -1,0 +1,43 @@
+{
+    "version": "0.1.0",
+    "configurations": [
+  
+      // ローカルにあるファイルをデバッグ
+      {
+        // デバッグ設定の名称
+        "name": "Launch local file",
+        // デバッグ種別を指定（chrome/node/monoなど）
+        "type": "chrome",
+        // lanunchまたはattachを指定
+        "request": "launch",
+        // 読み込むHTMLファイルを指定（プロジェクトからのパスを指定）
+        "file": "${workspaceRoot}/src/index.html"
+      },
+      {
+        "name": "Electron Debug Main Process",
+        "type": "node",
+        "request": "launch",
+        "cwd": "${workspaceRoot}",
+        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+        "windows": {
+          "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+        },
+        "program": "${workspaceRoot}/main.js",
+        "protocol": "inspector"
+      },
+      {
+        "name": "Electron Debug Renderer Process",
+        "type": "chrome",
+        "request": "launch",
+        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+        "windows": {
+          "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+        },
+        "runtimeArgs": [
+          "${workspaceRoot}/main.js",
+          "--remote-debugging-port=9222"
+        ],
+        "webRoot": "${workspaceRoot}"
+      }  ]
+  }
+  
