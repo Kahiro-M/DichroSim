@@ -1,2 +1,3 @@
 node_modules/
-dichromat-color-simulator*
+*-win32*
+*-x64*

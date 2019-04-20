@@ -1,12 +1,11 @@
 {
-  "name": "dichromat-color-simulator",
+  "name": "dichromat-color-distance-simulator",
   "version": "1.0.0",
   "description": "Dichromat Color Simulator",
   "main": "main.js",
   "scripts": {
-    "ele": "electron .",
-    "elepac": "node_modules/.bin/electron-packager --version",
-    "eleBuild": "node_modules/.bin/electron-packager . dichromat-color-simulator --platform=win32 --arch=x64"
+    "start": "electron .",
+    "buildWin": "electron-packager . DCDS --platform=win32 --arch=x64 --icon=icon.ico --overwrite --asar"
   },
   "repository": {
     "type": "git",
@@ -27,5 +26,6 @@
   "devDependencies": {
     "electron": "^2.0.18",
     "electron-packager": "^13.1.1"
-  }
+  },
+  "dependencies": {}
 }
