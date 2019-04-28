@@ -68,10 +68,15 @@ function colorCulc() {
 	var deutanLabColor1 = transXYZtoLab(deutanXYZColor1);
 	var deutanLabColor2 = transXYZtoLab(deutanXYZColor2);
 
-	
-	document.formInput.Ret1.value= culcColorDelta(commonLabColor1,commonLabColor2);	
-	document.formInput.Ret2.value= culcColorDelta(protanLabColor1,protanLabColor2);	
-	document.formInput.Ret3.value= culcColorDelta(deutanLabColor1,deutanLabColor2);	
+	//CIE delta E 1976
+	// document.formInput.Ret1.value= culcColorDelta(commonLabColor1,commonLabColor2);	
+	// document.formInput.Ret2.value= culcColorDelta(protanLabColor1,protanLabColor2);	
+	// document.formInput.Ret3.value= culcColorDelta(deutanLabColor1,deutanLabColor2);	
+
+	//CIE delta E 2000
+	document.formInput.Ret1.value = ciede2000(commonLabColor1.get([0]),commonLabColor1.get([1]),commonLabColor1.get([2]),commonLabColor2.get([0]),commonLabColor2.get([1]),commonLabColor2.get([2]));
+	document.formInput.Ret2.value = ciede2000(protanLabColor1.get([0]),protanLabColor1.get([1]),protanLabColor1.get([2]),protanLabColor2.get([0]),protanLabColor2.get([1]),protanLabColor2.get([2]));
+	document.formInput.Ret3.value = ciede2000(deutanLabColor1.get([0]),deutanLabColor1.get([1]),deutanLabColor1.get([2]),deutanLabColor2.get([0]),deutanLabColor2.get([1]),deutanLabColor2.get([2]));
 
 	discriminateDeltaE(document.formInput.Ret1.value,document.getElementById("Ret1Text"));
 	discriminateDeltaE(document.formInput.Ret2.value,document.getElementById("Ret2Text"));
@@ -182,16 +187,12 @@ discriminateDeltaE = function(resultFormInput,displayResultElement){
 
 
 function openClose(){
-	//var obj = document.getElementById('openHere').style;
-	// obj.display=(obj.display=='none')?'block':'none';
-	var obj = document.getElementsByClassName('openHere');
-	for(var i=0;i<obj.length;i++){
-		//非表示ならインライン要素に変更。表示状態なら非表示に変更。
-		if(obj[i].style.display == "inline-block"){
-			obj[i].style.display = "none";
-		}
-		else{
-			obj[i].style.display = "inline-block";
-		}
+	var obj = document.getElementById('openHere');
+	//非表示ならインライン要素に変更。表示状態なら非表示に変更。
+	if(obj.style.display == "inline-block"){
+		obj.style.display = "none";
+	}
+	else{
+		obj.style.display = "inline-block";
 	}
 }

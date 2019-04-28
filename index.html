@@ -12,6 +12,7 @@
 		<script type="text/javascript" src="lib/DichroSim/CulcXYZ.js"></script>
 		<script type="text/javascript" src="lib/DichroSim/BeDichromat.js"></script>
 		<script type="text/javascript" src="lib/DichroSim/CulcLab.js"></script>
+		<script type="text/javascript" src="lib/CIEde2000/ciede2000.js"></script>
 
 
 		<!-- 処理をまとめているscript -->
@@ -32,9 +33,9 @@
 				</p>
 				<p>
 					x:
-					<input class="SmallXY" name="Color1_x" step="0.01" value=0.3 type="number">　
+					<input class="SmallXY" name="Color1_x" step="0.001" value=0.3 type="number">　
 					y:
-					<input class="SmallXY" name="Color1_y" step="0.01" value=0.3 type="number">　
+					<input class="SmallXY" name="Color1_y" step="0.001" value=0.3 type="number">　
 					Y(cd/m2):
 					<input class="SmallXY" name="Color1_Y" step="1" value=80 type="number">
 				</p>
@@ -45,9 +46,9 @@
 				</p>
 				<p>
 					x:
-					<input class="SmallXY" name="Color2_x" step="0.01" value=0.3 type="number">　
+					<input class="SmallXY" name="Color2_x" step="0.001" value=0.3 type="number">　
 					y:
-					<input class="SmallXY" name="Color2_y" step="0.01" value=0.3 type="number">　
+					<input class="SmallXY" name="Color2_y" step="0.001" value=0.3 type="number">　
 					Y(cd/m2):
 					<input class="SmallXY" name="Color2_Y" step="1" value=80 type="number">
 				</p>
@@ -56,9 +57,9 @@
 				<div class="InputForms">
 					<p>
 						Color1とColor2の色差<br>
-						C型:<input name="Ret1" type="number"><span id="Ret1Text"></span><br>
-						P型:<input name="Ret2" type="number"><span id="Ret2Text"></span><br>
-						D型:<input name="Ret3" type="number"><span id="Ret3Text"></span><br>
+						C型:<input name="Ret1" readonly="readonly" type="number"><span id="Ret1Text"></span><br>
+						P型:<input name="Ret2" readonly="readonly" type="number"><span id="Ret2Text"></span><br>
+						D型:<input name="Ret3" readonly="readonly" type="number"><span id="Ret3Text"></span><br>
 					</p>
 				</div>
 			</div>
@@ -66,7 +67,7 @@
 
 			
 			<!-- 折り畳み展開ポインタ -->
-			<div onClick="OpenClose()">
+			<div onClick="openClose()">
 				<a class="title" style="cursor:pointer;">▼ Color1とColor2の色覚タイプ計算　途中経過(クリックで展開)</a>
 			</div>
 			<!--// 折り畳み展開ポインタ -->
@@ -82,9 +83,6 @@
 
 			</div>
 			<!--// 折り畳まれ部分 -->			
-
-
-
 
 	</body>
 </html>
