@@ -44,6 +44,6 @@ input{
 }
 
 #openHere{
-	display:none;
+	display:inline-block;
 	clear:both;
 }

@@ -11,7 +11,7 @@
         // lanunchまたはattachを指定
         "request": "launch",
         // 読み込むHTMLファイルを指定（プロジェクトからのパスを指定）
-        "file": "${workspaceRoot}/src/index.html"
+        "file": "${workspaceRoot}/index.html"
       },
       {
         "name": "Electron Debug Main Process",

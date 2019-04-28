@@ -72,7 +72,12 @@ function colorCulc() {
 	document.formInput.Ret1.value= culcColorDelta(commonLabColor1,commonLabColor2);	
 	document.formInput.Ret2.value= culcColorDelta(protanLabColor1,protanLabColor2);	
 	document.formInput.Ret3.value= culcColorDelta(deutanLabColor1,deutanLabColor2);	
-	
+
+	discriminateDeltaE(document.formInput.Ret1.value,document.getElementById("Ret1Text"));
+	discriminateDeltaE(document.formInput.Ret2.value,document.getElementById("Ret2Text"));
+	discriminateDeltaE(document.formInput.Ret3.value,document.getElementById("Ret3Text"));
+
+
 	//コメント領域のHTMLを操作して結果を表示する。
 	var IndexElements = document.getElementsByClassName("comment");
 	
@@ -127,7 +132,66 @@ function colorCulc() {
 }
 
 
-function OpenClose(){
-	var obj = document.getElementById('openHere').style;
-	obj.display=(obj.display=='none')?'block':'none';
+discriminateDeltaE = function(resultFormInput,displayResultElement){
+	if((Number(resultFormInput))<=THRESHOLD_NON_COLORIMETRY_AREA){
+		displayResultElement.innerHTML = "";
+		displayResultElement.innerHTML = STRING_NON_COLORIMETRY_AREA;
+		displayResultElement.style.backgroundColor = COLOR_NON_COLORIMETRY_AREA;
+	}
+	else if(Number(resultFormInput)<=THRESHOLD_IDENTIFICATION_COLOR_DIFFERENCE){
+		displayResultElement.innerHTML = "";
+		displayResultElement.innerHTML = STRING_IDENTIFICATION_COLOR_DIFFERENCE;
+		displayResultElement.style.backgroundColor = COLOR_IDENTIFICATION_COLOR_DIFFERENCE;
+	}
+	else if(Number(resultFormInput)<=THRESHOLD_AAA){
+		displayResultElement.innerHTML = "";
+		displayResultElement.innerHTML = STRING_AAA;
+		displayResultElement.style.backgroundColor = COLOR_AAA;
+	}
+	else if(Number(resultFormInput)<=THRESHOLD_AA){
+		displayResultElement.innerHTML = "";
+		displayResultElement.innerHTML = STRING_AA;
+		displayResultElement.style.backgroundColor = COLOR_AA;
+	}
+	else if(Number(resultFormInput)<=THRESHOLD_A){
+		displayResultElement.innerHTML = "";
+		displayResultElement.innerHTML = STRING_A;
+		displayResultElement.style.backgroundColor = COLOR_A;
+	}
+	else if(Number(resultFormInput)<=THRESHOLD_B){
+		displayResultElement.innerHTML = "";
+		displayResultElement.innerHTML = STRING_B;
+		displayResultElement.style.backgroundColor = COLOR_B;
+	}
+	else if(Number(resultFormInput)<=THRESHOLD_C){
+		displayResultElement.innerHTML = "";
+		displayResultElement.innerHTML = STRING_C;
+		displayResultElement.style.backgroundColor = COLOR_C;
+	}
+	else if(Number(resultFormInput)<=THRESHOLD_D){
+		displayResultElement.innerHTML = "";
+		displayResultElement.innerHTML = STRING_D;
+		displayResultElement.style.backgroundColor = COLOR_D;
+	}
+	else{
+		displayResultElement.innerHTML = "";
+		displayResultElement.innerHTML = STRING_OTHER_COLOR;
+		displayResultElement.style.backgroundColor = COLOR_OTHER_COLOR;
+	}
+}
+
+
+function openClose(){
+	//var obj = document.getElementById('openHere').style;
+	// obj.display=(obj.display=='none')?'block':'none';
+	var obj = document.getElementsByClassName('openHere');
+	for(var i=0;i<obj.length;i++){
+		//非表示ならインライン要素に変更。表示状態なら非表示に変更。
+		if(obj[i].style.display == "inline-block"){
+			obj[i].style.display = "none";
+		}
+		else{
+			obj[i].style.display = "inline-block";
+		}
+	}
 }

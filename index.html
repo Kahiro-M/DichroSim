@@ -5,10 +5,6 @@
 		<title>色弱色差シミュレータ</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<!-- 数学ライブラリ -->
-		<!-- 関数の使い方は⇒http://techc.omorita.com/topics/mathjs/ -->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-
-		<!-- 画面描画ライブラリ -->
 		<script type="text/javascript" src="lib/math.js/math.min.js"></script>
 
 		<!-- 色計算ライブラリ -->
@@ -19,6 +15,7 @@
 
 
 		<!-- 処理をまとめているscript -->
+		<script type="text/javascript" src="js/define.js"></script>
 		<script type="text/javascript" src="js/ColorCulc.js"></script>
 		<script type="text/javascript" src="js/Form.js"></script>
 
@@ -59,9 +56,9 @@
 				<div class="InputForms">
 					<p>
 						Color1とColor2の色差<br>
-						C型:<input name="Ret1" type="number">　
-						P型:<input name="Ret2" type="number">　
-						D型:<input name="Ret3" type="number">　
+						C型:<input name="Ret1" type="number"><span id="Ret1Text"></span><br>
+						P型:<input name="Ret2" type="number"><span id="Ret2Text"></span><br>
+						D型:<input name="Ret3" type="number"><span id="Ret3Text"></span><br>
 					</p>
 				</div>
 			</div>
