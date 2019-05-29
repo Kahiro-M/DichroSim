@@ -60,3 +60,7 @@ const COLOR_C = "#57C7C7";
 const COLOR_D = "#3BE3E3";
 const COLOR_OTHER_COLOR = "#1FFFFF";
 
+
+// 入力となる色の形式
+const INPUT_TYPE_SRGB = "sRGB";
+const INPUT_TYPE_SMALL_XYZ = "xyY";

@@ -24,8 +24,7 @@
 
 	<!-- HTML部分 -->
 	<body>
-		<input id="DoItButton" type="button" value="色差計算" onClick="colorCulc()">
-		<a href="index_sRGB.html">sRGB版</a>
+		<input id="DoItButton" type="button" value="色差計算" onClick="colorCulc_sRGB()">
 
 		<form name="formInput">
 			<div class="InputForms">
@@ -33,12 +32,12 @@
 					Color 1
 				</p>
 				<p>
-					x:
-					<input class="SmallXY" name="Color1_x" step="0.001" value=0.3 type="number">　
-					y:
-					<input class="SmallXY" name="Color1_y" step="0.001" value=0.3 type="number">　
-					Y(cd/m2):
-					<input class="SmallXY" name="Color1_Y" step="1" value=80 type="number">
+					R:
+					<input class="sRGB" name="Color1_R" step="1" value=128 type="number">　
+					G:
+					<input class="sRGB" name="Color1_G" step="1" value=128 type="number">　
+					B:
+					<input class="sRGB" name="Color1_B" step="1" value=128 type="number">
 				</p>
 			</div>
 			<div class="InputForms">
@@ -46,12 +45,12 @@
 					Color 2
 				</p>
 				<p>
-					x:
-					<input class="SmallXY" name="Color2_x" step="0.001" value=0.3 type="number">　
-					y:
-					<input class="SmallXY" name="Color2_y" step="0.001" value=0.3 type="number">　
-					Y(cd/m2):
-					<input class="SmallXY" name="Color2_Y" step="1" value=80 type="number">
+					R:
+					<input class="sRGB" name="Color2_R" step="1" value=128 type="number">　
+					G:
+					<input class="sRGB" name="Color2_G" step="1" value=128 type="number">　
+					B:
+					<input class="sRGB" name="Color2_B" step="1" value=128 type="number">
 				</p>
 			</div>
 			<div class="Returns">
