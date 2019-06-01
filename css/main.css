@@ -24,23 +24,28 @@ input{
 
 .InputForms{
 	/* この要素はflexコンテナとなり、子要素は自動的にflexアイテムとなる */
-/*	display: flex;*/
+	display: flex;
 
 	/* 横並びに表示する */
-/*	flex-direction: row;*/
+	flex-direction: row;
 
 	/* 画面幅に収まらない場合は折り返す */
 	flex-wrap: wrap;
 /*	border: solid 3px #ff0000;*/
 	width: 600px;
-/*
-	float: left;
-*/
 }
 
 .Returns{
 /*   border: solid 3px #ff0000;*/
 /*	width: 800px;*/
+}
+
+.displayColor{
+    width: 100px;
+    height: 70px;
+    text-align: center;
+    background-color: #000000;
+    color: #FFFFFF;
 }
 
 #openHere{

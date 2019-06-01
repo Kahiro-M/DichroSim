@@ -24,33 +24,33 @@
 
 	<!-- HTML部分 -->
 	<body>
-		<input id="DoItButton" type="button" value="色差計算" onClick="colorCulc_sRGB()">
+		<input id="DoItButton" type="button" value="色差計算" onClick="colorCulc(INPUT_TYPE_SRGB)">
 
 		<form name="formInput">
 			<div class="InputForms">
-				<p>
+				<div class="displayColor" id="displayColor1">
 					Color 1
-				</p>
-				<p>
+				</div>
+				<div>
 					R:
-					<input class="sRGB" name="Color1_R" step="1" value=128 type="number">　
+					<input class="sRGB" name="Color1_R" step="1" value=100 max=255 min=0 type="number" onchange="updateColors()"><br>
 					G:
-					<input class="sRGB" name="Color1_G" step="1" value=128 type="number">　
+					<input class="sRGB" name="Color1_G" step="1" value=100 max=255 min=0  type="number" onchange="updateColors()"><br>
 					B:
-					<input class="sRGB" name="Color1_B" step="1" value=128 type="number">
-				</p>
+					<input class="sRGB" name="Color1_B" step="1" value=100 max=255 min=0  type="number" onchange="updateColors()">
+				</div>
 			</div>
 			<div class="InputForms">
-				<p>
+				<p class="displayColor" id="displayColor2">
 					Color 2
 				</p>
 				<p>
 					R:
-					<input class="sRGB" name="Color2_R" step="1" value=128 type="number">　
+					<input class="sRGB" name="Color2_R" step="1" value=100 max=255 min=0  type="number" onchange="updateColors()"><br>
 					G:
-					<input class="sRGB" name="Color2_G" step="1" value=128 type="number">　
+					<input class="sRGB" name="Color2_G" step="1" value=100 max=255 min=0  type="number" onchange="updateColors()"><br>
 					B:
-					<input class="sRGB" name="Color2_B" step="1" value=128 type="number">
+					<input class="sRGB" name="Color2_B" step="1" value=100 max=255 min=0  type="number" onchange="updateColors()">
 				</p>
 			</div>
 			<div class="Returns">
