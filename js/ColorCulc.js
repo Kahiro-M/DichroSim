@@ -15,14 +15,14 @@ function colorCulc(InputType) {
 	}
 	else{
 		var Color1 = new RGBData();
-		Color1 = setRGBData(	document.formInput.Color1_R.value,
-							document.formInput.Color1_G.value,
-							document.formInput.Color1_B.value	);
+		Color1 = setRGBData(	document.formInput.C_Color1_R.value,
+							document.formInput.C_Color1_G.value,
+							document.formInput.C_Color1_B.value	);
 		
 		var Color2 = new RGBData();
-		Color2 = setRGBData(	document.formInput.Color2_R.value,
-							document.formInput.Color2_G.value,
-							document.formInput.Color2_B.value	);
+		Color2 = setRGBData(	document.formInput.C_Color2_R.value,
+							document.formInput.C_Color2_G.value,
+							document.formInput.C_Color2_B.value	);
 	}
 
 	var beDichromat = new DichromatTrans;
@@ -147,6 +147,17 @@ function colorCulc(InputType) {
 	IndexElements[0].innerHTML += "deutanLabColor2 "+ deutanLabColor2+"<br>";	
 	IndexElements[0].innerHTML += "<br>";
 	
+
+	//ProtanXYZ値をProtanRGB値に変換
+	var protanRGBColor1 = culcXYZ.transXYZtoRGB(protanXYZColor1);
+	var protanRGBColor2 = culcXYZ.transXYZtoRGB(protanXYZColor2);
+
+	updatePColors(protanRGBColor1,protanRGBColor2);
+
+	//DeutanLMS値をDeutanXYZ値に変換
+	var deutanRGBColor1 = culcXYZ.transXYZtoRGB(deutanXYZColor1);
+	var deutanRGBColor2 = culcXYZ.transXYZtoRGB(deutanXYZColor2);
+
 }
 
 discriminateDeltaE = function(resultFormInput,displayResultElement){

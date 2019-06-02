@@ -70,14 +70,19 @@ function updateDisplayColor(R,G,B,itemID){
 	// // element.style.backgroundColor = "#" + Number(R).toString(16) + Number(G).toString(16) + Number(B).toString(16);
 }
 
-function updateColors(){
+function updateCColors(){
 	var elements = document.getElementsByClassName("sRGB");
-	// for(var i=0;i<elements.length;i++){
-	// 	elements[i].value = become0to255(elements[i].value);
-	// }
-	updateDisplayColor(elements[0].value,elements[1].value,elements[2].value,"displayColor1");
-	updateDisplayColor(elements[3].value,elements[4].value,elements[5].value,"displayColor2");
+	//C型の色変更
+	updateDisplayColor(elements[0].value,elements[1].value,elements[2].value,"displayCColor1");
+	updateDisplayColor(elements[3].value,elements[4].value,elements[5].value,"displayCColor2");
 	colorCulc(INPUT_TYPE_SRGB);
+}
+
+function updatePColors(ProtanRGB1,ProtanRGB2,){
+	var elements = document.getElementsByClassName("sRGB");
+	//C型の色変更
+	updateDisplayColor(ProtanRGB1.get([0]),ProtanRGB1.get([1]),ProtanRGB1.get([2]),"displayPColor1");
+	updateDisplayColor(ProtanRGB2.get([0]),ProtanRGB2.get([1]),ProtanRGB2.get([2]),"displayPColor2");
 }
 
 function become0to255(inputValue){
