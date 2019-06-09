@@ -50,6 +50,7 @@ function updateDisplayColor(R,G,B,itemID){
 		tmpB = "0"+tmpB
 	}
 	element.style.backgroundColor = "#" + tmpR + tmpG + tmpB;
+	console.log(itemID,element.style.backgroundColor);
 
 
 	// //文字部分はRGB値を改変して使用する
