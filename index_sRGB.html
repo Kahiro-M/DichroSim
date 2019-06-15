@@ -23,7 +23,7 @@
 	</head>
 
 	<!-- HTML部分 -->
-	<body onload="updateCColors()">
+	<body onload="colorCulc(INPUT_TYPE_SRGB)">
 		<!-- <input id="DoItButton" type="button" value="色差計算" onClick="colorCulc(INPUT_TYPE_SRGB)"> -->
 
 		<form name="formInput">
@@ -34,11 +34,11 @@
 					</div>
 					<div class="InputValues">
 						R:
-						<input class="sRGB" name="C_Color1_R" step="1" value=100 max=255 min=0 type="number" onchange="updateCColors()"><br>
+						<input class="sRGB" name="C_Color1_R" step="1" value=100 max=255 min=0 type="number" onchange="colorCulc(INPUT_TYPE_SRGB)"><br>
 						G:
-						<input class="sRGB" name="C_Color1_G" step="1" value=100 max=255 min=0  type="number" onchange="updateCColors()"><br>
+						<input class="sRGB" name="C_Color1_G" step="1" value=100 max=255 min=0  type="number" onchange="colorCulc(INPUT_TYPE_SRGB)"><br>
 						B:
-						<input class="sRGB" name="C_Color1_B" step="1" value=100 max=255 min=0  type="number" onchange="updateCColors()">
+						<input class="sRGB" name="C_Color1_B" step="1" value=100 max=255 min=0  type="number" onchange="colorCulc(INPUT_TYPE_SRGB)">
 					</div>
 					<div class="displayColor" id="displayCColor1">
 						Color 1
@@ -48,11 +48,11 @@
 					</div>
 					<div class="InputValues">
 						R:
-						<input class="sRGB" name="C_Color2_R" step="1" value=100 max=255 min=0  type="number" onchange="updateCColors()"><br>
+						<input class="sRGB" name="C_Color2_R" step="1" value=100 max=255 min=0  type="number" onchange="colorCulc(INPUT_TYPE_SRGB)"><br>
 						G:
-						<input class="sRGB" name="C_Color2_G" step="1" value=100 max=255 min=0  type="number" onchange="updateCColors()"><br>
+						<input class="sRGB" name="C_Color2_G" step="1" value=100 max=255 min=0  type="number" onchange="colorCulc(INPUT_TYPE_SRGB)"><br>
 						B:
-						<input class="sRGB" name="C_Color2_B" step="1" value=100 max=255 min=0  type="number" onchange="updateCColors()">
+						<input class="sRGB" name="C_Color2_B" step="1" value=100 max=255 min=0  type="number" onchange="colorCulc(INPUT_TYPE_SRGB)">
 					</div>
 				</p>
 			</div>
@@ -73,6 +73,36 @@
 						Color 1
 					</div>
 					<div class="displayColor" id="displayPColor2">
+						Color 2
+					</div>
+					<div class="InputValues">
+						<!-- R:
+						<input class="sRGB" name="P_Color2_R" max=255 min=0 type="number" readonly><br>
+						G:
+						<input class="sRGB" name="P_Color2_G" max=255 min=0 type="number" readonly><br>
+						B:
+						<input class="sRGB" name="P_Color2_B" max=255 min=0 type="number" readonly> -->
+					</div>
+				</p>
+			</div>
+
+			<div class="InputForms">
+				<p>
+					<div class="ColorTypeName">
+						D型色覚
+					</div>
+					<div class="InputValues">
+						<!-- R:
+						<input class="sRGB" name="P_Color1_R" max=255 min=0 type="number" readonly><br>
+						G:
+						<input class="sRGB" name="P_Color1_G" max=255 min=0 type="number" readonly><br>
+						B:
+						<input class="sRGB" name="P_Color1_B" max=255 min=0 type="number" readonly> -->
+					</div>
+					<div class="displayColor" id="displayDColor1">
+						Color 1
+					</div>
+					<div class="displayColor" id="displayDColor2">
 						Color 2
 					</div>
 					<div class="InputValues">

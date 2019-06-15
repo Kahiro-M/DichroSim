@@ -36,16 +36,19 @@ function becomeLower() {
 	}
 }
 function updateDisplayColor(R,G,B,itemID){
+	var tR = become0to255(R);
+	var tG = become0to255(G);
+	var tB = become0to255(B);
 	var element = document.getElementById(itemID);
-	var tmpR = Number(R).toString(16);
+	var tmpR = Number(tR).toString(16);
 	if(tmpR<16){
 		tmpR = "0"+tmpR
 	}
-	var tmpG = Number(G).toString(16);
+	var tmpG = Number(tG).toString(16);
 	if(tmpG<16){
 		tmpG = "0"+tmpG
 	}
-	var tmpB = Number(B).toString(16);
+	var tmpB = Number(tB).toString(16);
 	if(tmpB<16){
 		tmpB = "0"+tmpB
 	}
@@ -71,19 +74,30 @@ function updateDisplayColor(R,G,B,itemID){
 	// // element.style.backgroundColor = "#" + Number(R).toString(16) + Number(G).toString(16) + Number(B).toString(16);
 }
 
-function updateCColors(){
-	var elements = document.getElementsByClassName("sRGB");
-	//C型の色変更
-	updateDisplayColor(elements[0].value,elements[1].value,elements[2].value,"displayCColor1");
-	updateDisplayColor(elements[3].value,elements[4].value,elements[5].value,"displayCColor2");
-	colorCulc(INPUT_TYPE_SRGB);
+// function updateCColors(){
+// 	var elements = document.getElementsByClassName("sRGB");
+// 	//C型の色変更
+// 	updateDisplayColor(elements[0].value,elements[1].value,elements[2].value,"displayCColor1");
+// 	updateDisplayColor(elements[3].value,elements[4].value,elements[5].value,"displayCColor2");
+// 	colorCulc(INPUT_TYPE_SRGB);
+// }
+
+function updateCColors(CommonRGB1,CommonRGB2){
+	//P型の色変更
+	updateDisplayColor(CommonRGB1.get([0]),CommonRGB1.get([1]),CommonRGB1.get([2]),"displayCColor1");
+	updateDisplayColor(CommonRGB2.get([0]),CommonRGB2.get([1]),CommonRGB2.get([2]),"displayCColor2");
 }
 
-function updatePColors(ProtanRGB1,ProtanRGB2,){
-	var elements = document.getElementsByClassName("sRGB");
-	//C型の色変更
+function updatePColors(ProtanRGB1,ProtanRGB2){
+	//P型の色変更
 	updateDisplayColor(ProtanRGB1.get([0]),ProtanRGB1.get([1]),ProtanRGB1.get([2]),"displayPColor1");
 	updateDisplayColor(ProtanRGB2.get([0]),ProtanRGB2.get([1]),ProtanRGB2.get([2]),"displayPColor2");
+}
+
+function updateDColors(DeutanRGB1,DeutanRGB2){
+	//D型の色変更
+	updateDisplayColor(DeutanRGB1.get([0]),DeutanRGB1.get([1]),DeutanRGB1.get([2]),"displayDColor1");
+	updateDisplayColor(DeutanRGB2.get([0]),DeutanRGB2.get([1]),DeutanRGB2.get([2]),"displayDColor2");
 }
 
 function become0to255(inputValue){
