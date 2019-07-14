@@ -1,0 +1,20 @@
+null: ColorData {x: 0.3333333333333333, y: 0.3333333333333333, Y: 100}
+displayCColor1 rgb(100, 100, 100)
+null: ColorData {x: 0.3580645161290323, y: 0.3193548387096774, Y: 99}
+displayPColor1 rgb(111, 99, 100)
+null: ColorData {x: 0.35737704918032787, y: 0.31475409836065577, Y: 96}
+displayDColor1 rgb(109, 96, 100)
+
+null: ColorData {x: 0.5, y: 0.25, Y: 100}
+displayCColor1 rgb(200, 100, 100)
+null: ColorData {x: 0.30158730158730157, y: 0.37777777777777777, Y: 119}
+displayPColor1 rgb(95, 119, 101)
+null: ColorData {x: 1.3349455864570738, y: -0.22732769044740025, Y: 188}
+displayDColor1 rgb(0, 188, 89)
+
+null: ColorData {x: 0.25, y: 0.5, Y: 200}
+displayCColor1 rgb(100, 200, 100)
+null: ColorData {x: 1.2850595783684693, y: -0.1924839596700275, Y: 210}
+displayPColor1 rgb(0, 210, 101)
+null: ColorData {x: 1.1215118332744614, y: -0.09113387495584599, Y: 258}
+displayDColor1 rgb(109, 96, 100)
