@@ -1,40 +1,30 @@
-//formInputの大小関係を調べる
-function isOver1(input) {
+//formInput(RGB値)の範囲を制限する
+function colorCulcRGB(InputType){
+	if(InputType == INPUT_TYPE_SRGB){
+		var tC1R = document.formInput.C_Color1_R.value;
+		var tC1G = document.formInput.C_Color1_G.value;
+		var tC1B = document.formInput.C_Color1_B.value;
+		var tC2R = document.formInput.C_Color2_R.value;
+		var tC2G = document.formInput.C_Color2_G.value;
+		var tC2B = document.formInput.C_Color2_B.value;
 
-	if(input>1){
-		return 1;
+		tC1R = become0to255(tC1R);
+		tC1G = become0to255(tC1G);
+		tC1B = become0to255(tC1B);
+		tC2R = become0to255(tC2R);
+		tC2G = become0to255(tC2G);
+		tC2B = become0to255(tC2B);
+		
+		document.formInput.C_Color1_R.value = tC1R;
+		document.formInput.C_Color1_G.value = tC1G;
+		document.formInput.C_Color1_B.value = tC1B;
+		document.formInput.C_Color2_R.value = tC2R;
+		document.formInput.C_Color2_G.value = tC2G;
+		document.formInput.C_Color2_B.value = tC2B;
 	}
-	else{
-		return 0;
-	}
-	return 0;
+	colorCulc(InputType);
 }
 
-function becomeHigher() {
-	var iInStart = Number(document.formInput.Start.value);
-	var iInEnd = Number(document.formInput.End.value);
-
-	if(iInStart<iInEnd){
-			//OKなので何もしない
-		}
-	else{
-		iInEnd = iInStart+1;
-		document.formInput.End.value = iInEnd;
-	}
-}
-
-function becomeLower() {
-	var iInStart = Number(document.formInput.Start.value);
-	var iInEnd = Number(document.formInput.End.value);
-
-	if(iInStart<iInEnd){
-			//OKなので何もしない
-		}
-	else{
-		iInStart = iInEnd-1;
-		document.formInput.Start.value = iInStart;
-	}
-}
 function updateDisplayColor(R,G,B,itemID){
 	var tR = become0to255(R);
 	var tG = become0to255(G);
@@ -53,34 +43,8 @@ function updateDisplayColor(R,G,B,itemID){
 		tmpB = "0"+tmpB
 	}
 	element.style.backgroundColor = "#" + tmpR + tmpG + tmpB;
-	console.log(itemID,element.style.backgroundColor);
-
-
-	// //文字部分はRGB値を改変して使用する
-	// var invR = Number(255-R).toString(16);
-	// if(invR<16){
-	// 	invR = "0"+invR
-	// }
-	// var invG = Number(255-G).toString(16);
-	// if(invG<16){
-	// 	invG = "0"+invG
-	// }
-	// var invB = Number(255-B).toString(16);
-	// if(invB<16){
-	// 	invB = "0"+invB
-	// }
-	// element.style.color = "#" + invR + invG + invB;
-	
-	// // element.style.backgroundColor = "#" + Number(R).toString(16) + Number(G).toString(16) + Number(B).toString(16);
+	console.log(itemID,element.style.backgroundColor,"#" + tmpR + tmpG + tmpB);
 }
-
-// function updateCColors(){
-// 	var elements = document.getElementsByClassName("sRGB");
-// 	//C型の色変更
-// 	updateDisplayColor(elements[0].value,elements[1].value,elements[2].value,"displayCColor1");
-// 	updateDisplayColor(elements[3].value,elements[4].value,elements[5].value,"displayCColor2");
-// 	colorCulc(INPUT_TYPE_SRGB);
-// }
 
 function updateCColors(CommonRGB1,CommonRGB2){
 	//P型の色変更
@@ -101,8 +65,8 @@ function updateDColors(DeutanRGB1,DeutanRGB2){
 }
 
 function become0to255(inputValue){
-	var tmp = become255(inputValue);
-	tmp = become0(inputValue);
+	var tmp = become255(Number(inputValue));
+	tmp = become0(tmp);
 	return Number(tmp);
 }
 
