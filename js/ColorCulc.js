@@ -100,24 +100,24 @@ function colorCulc(InputType) {
 	}
 	else{
 		//ProtanXYZ値をProtanRGB値に変換
-		var commonXYZColor1_renew = culcXYZ.transXYZtoRGB(commonXYZColor1);
-		var commonXYZColor2_renew = culcXYZ.transXYZtoRGB(commonXYZColor2);
+		var commonRGBColor1_renew = culcXYZ.transXYZtoRGB(commonXYZColor1);
+		var commonRGBColor2_renew = culcXYZ.transXYZtoRGB(commonXYZColor2);
 		console.log(culcXYZ.culcSmallXYZ(commonXYZColor1));
-		console.log(culcXYZ.culcSmallXYZ(commonXYZColor1));
-		updateCColors(commonXYZColor1_renew,commonXYZColor2_renew);
+		// console.log(culcXYZ.culcSmallXYZ(commonXYZColor2));
+		updateCColors(commonRGBColor1_renew,commonRGBColor2_renew);
 
 		//ProtanXYZ値をProtanRGB値に変換
 		var protanRGBColor1 = culcXYZ.transXYZtoRGB(protanXYZColor1);
 		var protanRGBColor2 = culcXYZ.transXYZtoRGB(protanXYZColor2);
 		console.log(culcXYZ.culcSmallXYZ(protanXYZColor1));
-		console.log(culcXYZ.culcSmallXYZ(protanXYZColor2));
+		// console.log(culcXYZ.culcSmallXYZ(protanXYZColor2));
 		updatePColors(protanRGBColor1,protanRGBColor2);
 
 		//DeutanLMS値をDeutanXYZ値に変換
 		var deutanRGBColor1 = culcXYZ.transXYZtoRGB(deutanXYZColor1);
 		var deutanRGBColor2 = culcXYZ.transXYZtoRGB(deutanXYZColor2);
 		console.log(culcXYZ.culcSmallXYZ(deutanXYZColor1));
-		console.log(culcXYZ.culcSmallXYZ(deutanXYZColor2));
+		// console.log(culcXYZ.culcSmallXYZ(deutanXYZColor2));
 		updateDColors(deutanRGBColor1,deutanRGBColor2);
 	}
 
