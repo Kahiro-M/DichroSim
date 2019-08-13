@@ -36,8 +36,10 @@ input{
 }
 
 .Returns{
-/*   border: solid 3px #ff0000;*/
-/*	width: 800px;*/
+    text-shadow:1px 0px 0 #FFF,
+        -1px 0px 0 #FFF,
+        0px 1px 0 #FFF,
+        0px -1px 0 #FFF;
 }
 
 .displayColor{

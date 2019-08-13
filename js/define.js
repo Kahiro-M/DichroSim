@@ -50,16 +50,15 @@ const STRING_OTHER_COLOR = "別の色";
 
 
 // 結果表示に使用する色
-const COLOR_NON_COLORIMETRY_AREA = "#FF1F1F";
-const COLOR_IDENTIFICATION_COLOR_DIFFERENCE = "#E33B3B";
-const COLOR_AAA = "#C75757";
-const COLOR_AA = "#AB7373";
-const COLOR_A = "#8F8F8F";
-const COLOR_B = "#73ABAB";
-const COLOR_C = "#57C7C7";
-const COLOR_D = "#3BE3E3";
-const COLOR_OTHER_COLOR = "#1FFFFF";
-
+const COLOR_NON_COLORIMETRY_AREA = "#804000";
+const COLOR_IDENTIFICATION_COLOR_DIFFERENCE = "#ff4b00";
+const COLOR_AAA = "#ff8082";
+const COLOR_AA = "#f6aa00";
+const COLOR_A = "#fff100";
+const COLOR_B = "#03af7a";
+const COLOR_C = "#4dc4ff";
+const COLOR_D = "#005aff";
+const COLOR_OTHER_COLOR = "#990099";
 
 // 入力となる色の形式
 const INPUT_TYPE_SRGB = "sRGB";
