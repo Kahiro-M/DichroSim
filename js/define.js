@@ -63,3 +63,10 @@ const COLOR_OTHER_COLOR = "#990099";
 // 入力となる色の形式
 const INPUT_TYPE_SRGB = "sRGB";
 const INPUT_TYPE_SMALL_XYZ = "xyY";
+
+
+const samplePoint = [
+  {x:0.3,y:0.3},
+  {x:0.3,y:0.4},
+  {x:0.4,y:0.4},
+  {x:0.4,y:0.3}];

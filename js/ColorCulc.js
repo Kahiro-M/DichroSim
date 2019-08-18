@@ -24,7 +24,7 @@ function colorCulc(InputType) {
 							document.formInput.C_Color2_G.value,
 							document.formInput.C_Color2_B.value	);
 	}
-
+	console.log(Color1,"is Inclusion :"+judgeInclusion(Color1,samplePoint));
 	var beDichromat = new DichromatTrans;
 	var culcXYZ = new CulcXYZ;
 
