@@ -25,7 +25,7 @@
 
 	<!-- HTML部分 -->
 	<body>
-		<input id="DoItButton" type="button" value="色差計算" onClick="colorCulc(INPUT_TYPE_SMALL_XYZ)">
+		<input id="DoItButton" type="button" value="色差計算" onClick="colorForcedGamut(INPUT_TYPE_SMALL_XYZ)">
 		<a href="index_sRGB.html">sRGB版</a>
 
 		<form name="formInput">
@@ -41,7 +41,10 @@
 					Y(cd/m2):
 					<input class="SmallXY" name="Color1_Y" step="1" value=80 type="number">
 				</p>
-			</div>
+				<p>
+					<span id="JudgeInclusionSpectrumColor1Text"></span>
+				</p>
+		</div>
 			<div class="InputForms">
 				<p>
 					Color 2
@@ -54,7 +57,9 @@
 					Y(cd/m2):
 					<input class="SmallXY" name="Color2_Y" step="1" value=80 type="number">
 				</p>
-			</div>
+				<p>
+					<span id="JudgeInclusionSpectrumColor2Text"></span>
+				</p>			</div>
 			<div class="Returns">
 				<div class="InputForms">
 					<p>

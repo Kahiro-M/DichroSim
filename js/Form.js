@@ -1,5 +1,5 @@
 //formInput(RGB値)の範囲を制限する
-function colorCulcRGB(InputType){
+function colorForcedGamut(InputType){
 	if(InputType == INPUT_TYPE_SRGB){
 		var tC1R = document.formInput.C_Color1_R.value;
 		var tC1G = document.formInput.C_Color1_G.value;
@@ -22,6 +22,47 @@ function colorCulcRGB(InputType){
 		document.formInput.C_Color2_G.value = tC2G;
 		document.formInput.C_Color2_B.value = tC2B;
 	}
+	else{
+		var Color1 = new ColorData();
+		Color1 = setColorData(	document.formInput.Color1_x.value,
+							document.formInput.Color1_y.value,
+							document.formInput.Color1_Y.value	);
+		
+		var Color2 = new ColorData();
+		Color2 = setColorData(	document.formInput.Color2_x.value,
+							document.formInput.Color2_y.value,
+							document.formInput.Color2_Y.value	);
+
+		// スペクトル軌跡外なら警告表示する。
+		var spectrumElement = document.getElementById("JudgeInclusionSpectrumColor1Text");
+		if(judgeInclusion(Color1,SPECTRUM)){
+			spectrumElement.innerHTML = "";
+		}
+		else{
+			document.formInput.Color1_x.style.backgroundColor = COLOR_OUT_OF_RANGE_BACKGROUND;
+			document.formInput.Color1_y.style.backgroundColor = COLOR_OUT_OF_RANGE_BACKGROUND;
+			document.formInput.Color1_Y.style.backgroundColor = COLOR_OUT_OF_RANGE_BACKGROUND;
+			document.formInput.Color1_x.style.color= COLOR_OUT_OF_RANGE_TEXT;
+			document.formInput.Color1_y.style.color = COLOR_OUT_OF_RANGE_TEXT;
+			document.formInput.Color1_Y.style.color = COLOR_OUT_OF_RANGE_TEXT;
+			spectrumElement.innerHTML = "";
+			spectrumElement.innerHTML = STRING_OUT_OF_RANGE_TEXT;
+		}
+		
+		spectrumElement = document.getElementById("JudgeInclusionSpectrumColor2Text");
+		if(judgeInclusion(Color2,SPECTRUM)){
+			spectrumElement.innerHTML = "";
+		}
+		else{
+			document.formInput.Color2_x.style.backgroundColor = COLOR_OUT_OF_RANGE_BACKGROUND;
+			document.formInput.Color2_y.style.backgroundColor = COLOR_OUT_OF_RANGE_BACKGROUND;
+			document.formInput.Color2_Y.style.backgroundColor = COLOR_OUT_OF_RANGE_BACKGROUND;
+			document.formInput.Color2_x.style.color= COLOR_OUT_OF_RANGE_TEXT;
+			document.formInput.Color2_y.style.color = COLOR_OUT_OF_RANGE_TEXT;
+			document.formInput.Color2_Y.style.color = COLOR_OUT_OF_RANGE_TEXT;
+			spectrumElement.innerHTML = "";
+			spectrumElement.innerHTML = STRING_OUT_OF_RANGE_TEXT;
+		}	}
 	colorCulc(InputType);
 }
 

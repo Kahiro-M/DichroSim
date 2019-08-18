@@ -24,7 +24,7 @@
 	</head>
 
 	<!-- HTML部分 -->
-	<body onload="colorCulcRGB(INPUT_TYPE_SRGB)">
+	<body onload="colorForcedGamut(INPUT_TYPE_SRGB)">
 		<!-- <input id="DoItButton" type="button" value="色差計算" onClick="colorCulc(INPUT_TYPE_SRGB)"> -->
 		<a href="index.html">xy色度座標版</a>
 
@@ -36,11 +36,11 @@
 					</div>
 					<div class="InputValues">
 						R:
-						<input class="sRGB" name="C_Color1_R" step="1" value=100 max=255 min=0 type="number" onchange="colorCulcRGB(INPUT_TYPE_SRGB)"><br>
+						<input class="sRGB" name="C_Color1_R" step="1" value=100 max=255 min=0 type="number" onchange="colorForcedGamut(INPUT_TYPE_SRGB)"><br>
 						G:
-						<input class="sRGB" name="C_Color1_G" step="1" value=100 max=255 min=0  type="number" onchange="colorCulcRGB(INPUT_TYPE_SRGB)"><br>
+						<input class="sRGB" name="C_Color1_G" step="1" value=100 max=255 min=0  type="number" onchange="colorForcedGamut(INPUT_TYPE_SRGB)"><br>
 						B:
-						<input class="sRGB" name="C_Color1_B" step="1" value=100 max=255 min=0  type="number" onchange="colorCulcRGB(INPUT_TYPE_SRGB)">
+						<input class="sRGB" name="C_Color1_B" step="1" value=100 max=255 min=0  type="number" onchange="colorForcedGamut(INPUT_TYPE_SRGB)">
 					</div>
 					<div class="displayColor" id="displayCColor1">
 						Color 1
@@ -50,11 +50,11 @@
 					</div>
 					<div class="InputValues">
 						R:
-						<input class="sRGB" name="C_Color2_R" step="1" value=100 max=255 min=0  type="number" onchange="colorCulcRGB(INPUT_TYPE_SRGB)"><br>
+						<input class="sRGB" name="C_Color2_R" step="1" value=100 max=255 min=0  type="number" onchange="colorForcedGamut(INPUT_TYPE_SRGB)"><br>
 						G:
-						<input class="sRGB" name="C_Color2_G" step="1" value=100 max=255 min=0  type="number" onchange="colorCulcRGB(INPUT_TYPE_SRGB)"><br>
+						<input class="sRGB" name="C_Color2_G" step="1" value=100 max=255 min=0  type="number" onchange="colorForcedGamut(INPUT_TYPE_SRGB)"><br>
 						B:
-						<input class="sRGB" name="C_Color2_B" step="1" value=100 max=255 min=0  type="number" onchange="colorCulcRGB(INPUT_TYPE_SRGB)">
+						<input class="sRGB" name="C_Color2_B" step="1" value=100 max=255 min=0  type="number" onchange="colorForcedGamut(INPUT_TYPE_SRGB)">
 					</div>
 				</p>
 			</div>
