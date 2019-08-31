@@ -3,6 +3,7 @@ title: 色弱色差シミュレータ
 tags: JavaScript Web 色彩工学 色弱シミュレーター 色空間
 author: Kahiro-M
 slide: false
+footer: Apache License 2.0 | Copyright © 2018-present Kahiro-M
 ---
 
 # 色弱色差シミュレータ

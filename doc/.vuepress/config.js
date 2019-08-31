@@ -1,4 +1,8 @@
 module.exports = {
+  title: 'DCDS Manual',
+  description: '色弱色差シミュレータ説明書',
+  dest: '/doc/',
+  // base: '/doc/',
   themeConfig: {
     // logoのイメージファイルを参照させます。
     logo: 'icon.png',
