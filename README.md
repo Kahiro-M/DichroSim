@@ -1,5 +1,7 @@
 # Dichromat distance simulator
 ---
+https://kahiro-m.github.io/DichroSim/
+
 日本語での解説：https://qiita.com/Kahiro-M/items/5d4cfeadc91073a8d278
 
 ## How do you use it?
