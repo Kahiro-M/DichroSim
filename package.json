@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "exeBuild": "electron-packager . DCDS --platform=win32 --arch=x64 --icon=icon.ico --overwrite --asar",
+    "build": "electron-packager . DCDS --platform=win32 --arch=x64 --icon=icon.ico --overwrite --asar",
     "dev": "vuepress dev doc",
     "htmlBuild": "vuepress build doc",
     "eject": "vuepress eject"
