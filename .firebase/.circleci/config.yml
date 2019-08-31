@@ -23,13 +23,13 @@ jobs:
       - run:
           command: yarn add firebase-tools
 
-      - save_cache:
-          paths:
-            - node_moduels
-          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      # - save_cache:
+      #     paths:
+      #       - node_moduels
+      #     key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
 
-      - run:
-          command: yarn build 
+      # - run:
+      #     command: yarn build 
 
       - run:
           command: node_modules/.bin/firebase deploy --only hosting --project "$FIREBASE_PJ" --token "$FIREBASE_TOKEN"
