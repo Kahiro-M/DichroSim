@@ -1,11 +1,14 @@
 {
   "name": "dichromat-color-distance-simulator",
   "version": "1.1.0",
-  "description": "Dichromat Color Simulator",
+  "description": "Dichromat Color Distance Simulator",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "buildWin": "electron-packager . DCDS --platform=win32 --arch=x64 --icon=icon.ico --overwrite --asar"
+    "exeBuild": "electron-packager . DCDS --platform=win32 --arch=x64 --icon=icon.ico --overwrite --asar",
+    "dev": "vuepress dev doc",
+    "htmlBuild": "vuepress build doc",
+    "eject": "vuepress eject"
   },
   "repository": {
     "type": "git",
@@ -25,7 +28,8 @@
   "homepage": "https://github.com/Kahiro-M/DichroSim/blob/master/README.md",
   "devDependencies": {
     "electron": "^2.0.18",
-    "electron-packager": "^13.1.1"
+    "electron-packager": "^13.1.1",
+    "vuepress": "^1.0.0-rc.1"
   },
   "dependencies": {}
 }
