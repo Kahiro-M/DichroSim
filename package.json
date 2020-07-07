@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/Kahiro-M/DichroSim/blob/master/README.md",
   "devDependencies": {
-    "electron": "^2.0.18",
+    "electron": "^7.2.4",
     "electron-packager": "^13.1.1",
     "vuepress": "^1.0.0-rc.1"
   },
